@@ -5,9 +5,9 @@
 \clearpage
 \changepage{}{}{}{1.5cm}{}{-2cm}{}{}{}
 
-## About This Book ##
+## О книге ##
 
-### License ###
+### Лицензия ###
 The Little MongoDB Book book is licensed under the Attribution-NonCommercial 3.0 Unported license. **You should not have paid for this book.**
 
 You are basically free to copy, distribute, modify or display the book. However, I ask that you always attribute the book to me, Karl Seguin and do not use it for commercial purposes.
@@ -16,24 +16,24 @@ You can see the full text of the license at:
 
 <http://creativecommons.org/licenses/by-nc/3.0/legalcode>
 
-### About The Author ###
+### Об авторе ###
 Karl Seguin is a developer with experience across various fields and technologies. He's an expert .NET and Ruby developer.  He's a semi-active contributor to OSS projects, a technical writer and an occasional speaker. With respect to MongoDB, he was a core contributor to the C# MongoDB library NoRM, wrote the interactive tutorial [mongly](http://mongly.com) as well as the [Mongo Web Admin](https://github.com/karlseguin/Mongo-Web-Admin). His free service for casual game developers, [mogade.com](http://mogade.com/), is powered by MongoDB.
 
 Karl has since written [The Little Redis Book](http://openmymind.net/2012/1/23/The-Little-Redis-Book/)
 
 His blog can be found at <http://openmymind.net>, and he tweets via [@karlseguin](http://twitter.com/karlseguin)
 
-### With Thanks To ###
+### Благодарности ###
 A special thanks to [Perry Neal](http://twitter.com/perryneal) for lending me his eyes, mind and passion. You provided me with invaluable help. Thank you.
 
-### Latest Version ###
+### Последняя версия ###
 The latest source of this book is available at: 
 
 <http://github.com/karlseguin/the-little-mongodb-book>.
 
 \clearpage
 
-## Introduction ##
+## Введение ##
  > It's not my fault the chapters are short, MongoDB is just easy to learn.
 
 It is often said that technology moves at a blazing pace. It's true that there is an ever growing list of new technologies and techniques being released. However, I've long been of the opinion that the fundamental technologies used by programmers move at a rather slow pace. One could spend years   learning little yet remain relevant. What is striking though is the speed at which established technologies get replaced. Seemingly over-night, long established technologies find themselves threatened by shifts in developer focus.
@@ -48,7 +48,7 @@ You might be wondering where MongoDB fits into all of this. As a document-orient
 
 As you may have noticed, we use the terms MongoDB and Mongo interchangeably.
 
-## Getting Started ##
+## Приступая к работе ##
 Most of this book will focus on core MongoDB functionality. We'll therefore rely on the MongoDB shell. While the shell is useful to learn as well as being a useful administrative tool, your code will use a MongoDB driver.
 
 This does bring up the first thing you should know about MongoDB: its drivers. MongoDB has a [number of official drivers](http://www.mongodb.org/display/DOCS/Drivers) for various languages. These drivers can be thought of as the various database drivers you are probably already familiar with. On top of these drivers, the development community has built more language/framework-specific libraries. For example, [NoRM](https://github.com/atheken/NoRM) is a C# library which implements LINQ, and [MongoMapper](https://github.com/jnunemaker/mongomapper) is a Ruby library which is ActiveRecord-friendly. Whether you choose to program directly against the core MongoDB drivers or some higher-level library is up to you. I point this out only because many people new to MongoDB are confused as to why there are both official drivers and community libraries - the former generally focuses on core communication/connectivity with MongoDB and the latter with more language and framework specific implementations.
@@ -77,7 +77,7 @@ You can now launch `mongo` (without the *d*) which will connect a shell to your 
 
 \clearpage
 
-## Chapter 1 - The Basics ##
+## Глава 1 - Основы ##
 We begin our journey by getting to know the basic mechanics of working with MongoDB. Obviously this is core to understanding MongoDB, but it should also help us answer higher-level questions about where MongoDB fits.
 
 To get started, there are six simple concepts we need to understand.
@@ -128,7 +128,7 @@ Now, back to our discussion about schema-less collections. Insert a totally diff
 
 And, again use `find` to list the documents. Once we know a bit more, we'll discuss this interesting behavior of MongoDB, but hopefully you are starting to understand why the more traditional terminology wasn't a good fit.
 
-### Mastering Selectors ###
+### Создание селекторов ###
 In addition to the six concepts we've explored, there's one practical aspect of MongoDB you need to have a good grasp of before moving to more advanced topics: query selectors. A MongoDB query selector is like the `where` clause of an SQL statement. As such, you use it when finding, counting, updating and removing documents from collections. A selector is a JSON object , the simplest of which is `{}` which matches all documents (`null` works too). If we wanted to find all female unicorns, we could use `{gender:'f'}`.
 
 Before delving too deeply into selectors, let's set up some data to play with. First, remove what we've put so far in the `unicorns` collection via: `db.unicorns.remove()` (since we aren't supplying a selector, it'll remove all documents). Now, issue the following inserts to get some data we can play with (I suggest you copy and paste this):
@@ -172,12 +172,12 @@ The `ObjectId` which MongoDB generated for our `_id` field can be selected like 
 
 	db.unicorns.find({_id: ObjectId("TheObjectId")})
 
-### In This Chapter ###
+### В этой главе ###
 We haven't looked at the `update` command yet, or some of the fancier things we can do with `find`. However, we did get MongoDB up and running, looked briefly at the `insert` and `remove` commands (there isn't much more than what we've seen). We also introduced `find` and saw what MongoDB `selectors` were all about. We've had a good start and laid a solid foundation for things to come. Believe it or not, you actually know most of what there is to know about MongoDB - it really is meant to be quick to learn and easy to use. I strongly urge you to play with your local copy before moving on. Insert different documents, possibly in new collections, and get familiar with different selectors. Use `find`, `count` and `remove`. After a few tries on your own, things that might have seemed awkward at first will hopefully fall into place.
 
 \clearpage
 
-## Chapter 2 - Updating ##
+## Глава 2 - Updating ##
 In chapter 1 we introduced three of the four CRUD (create, read, update and delete) operations. This chapter is dedicated to the one we skipped over: `update`. `Update` has a few surprising behaviors, which is why we dedicate a chapter to it.
 
 ### Update: Replace Versus $set ###
