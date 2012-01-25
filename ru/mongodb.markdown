@@ -8,76 +8,76 @@
 ## О книге ##
 
 ### Лицензия ###
-The Little MongoDB Book book is licensed under the Attribution-NonCommercial 3.0 Unported license. **You should not have paid for this book.**
+The Little MongoDB Book book is licensed under the Attribution-NonCommercial 3.0 Unported license. **Вы не должны платить за эту книгу.**
 
-You are basically free to copy, distribute, modify or display the book. However, I ask that you always attribute the book to me, Karl Seguin and do not use it for commercial purposes.
+Разрешается свободно копировать, распространять, изменять или отображать данную книгу. Однако, прошу всегда ссылаться на автора - Karl Seguin - и не использовать книгу в коммерческих целях.
 
-You can see the full text of the license at:
+Полный текст лицензии всегда можно прочитать здесь:
 
 <http://creativecommons.org/licenses/by-nc/3.0/legalcode>
 
 ### Об авторе ###
-Karl Seguin is a developer with experience across various fields and technologies. He's an expert .NET and Ruby developer.  He's a semi-active contributor to OSS projects, a technical writer and an occasional speaker. With respect to MongoDB, he was a core contributor to the C# MongoDB library NoRM, wrote the interactive tutorial [mongly](http://mongly.com) as well as the [Mongo Web Admin](https://github.com/karlseguin/Mongo-Web-Admin). His free service for casual game developers, [mogade.com](http://mogade.com/), is powered by MongoDB.
+Karl Seguin - разработчик с опытом во многих областях и технологиях. Он опытный .NET- и Ruby-разработчик.  Он - частично занятый участник опен-сорсных проектов, технический писатель и нерегулярный докладчик. Применительно к MongoDB, он был разработчиком ядра C# MongoDB библиотеки NoRM, написал интерактивный туториал [mongly](http://mongly.com) и [Mongo Web Admin](https://github.com/karlseguin/Mongo-Web-Admin). Его бесплатный сервис для разработчиков казуальных игр, [mogade.com](http://mogade.com/), работает на MongoDB.
 
-Karl has since written [The Little Redis Book](http://openmymind.net/2012/1/23/The-Little-Redis-Book/)
+Карл также написал книгу [The Little Redis Book](http://openmymind.net/2012/1/23/The-Little-Redis-Book/)
 
-His blog can be found at <http://openmymind.net>, and he tweets via [@karlseguin](http://twitter.com/karlseguin)
+Вот его блог: <http://openmymind.net>, и твиттер: [@karlseguin](http://twitter.com/karlseguin)
 
 ### Благодарности ###
-A special thanks to [Perry Neal](http://twitter.com/perryneal) for lending me his eyes, mind and passion. You provided me with invaluable help. Thank you.
+Особая благодарность [Perry Neal](http://twitter.com/perryneal) за ум, внимание и энтузиазм. Ты оказал мне неоценимую помощь. Спасибо.
 
 ### Последняя версия ###
-The latest source of this book is available at: 
+Свежие исходники книги доступны по адресу: 
 
 <http://github.com/karlseguin/the-little-mongodb-book>.
 
 \clearpage
 
 ## Введение ##
- > It's not my fault the chapters are short, MongoDB is just easy to learn.
+ > Не моя вина, что книга такая короткая, просто MongoDB легка в освоении.
 
-It is often said that technology moves at a blazing pace. It's true that there is an ever growing list of new technologies and techniques being released. However, I've long been of the opinion that the fundamental technologies used by programmers move at a rather slow pace. One could spend years   learning little yet remain relevant. What is striking though is the speed at which established technologies get replaced. Seemingly over-night, long established technologies find themselves threatened by shifts in developer focus.
+Технологии развиваются семимильными шагами. Список новых технологий и методологий постояно растёт. Однако, я всегда придерживался мнения, что фундаментальные технологии, используемые программистами, развиваются не столь стремительно. Можно долгое время обладать актуальными знаниями, не пополняя их. Однако зачастую устоявшиеся технологии заменяются другими с потрясающей скоростью. Внезапные скачки разработок иногда ставят под угрозу устоявшиеся старые технологии.
 
-Nothing could be more representative of this sudden shift than the progress of NoSQL technologies against well-established relational databases. It almost seems like one day the web was being driven by a few RDBMS' and the next, five or so NoSQL solutions had established themselves as worthy solutions.
+Яркий пример того - прогресс NoSQL-технологий, приходящих на замену давно известным реляционным базам данных. Вчера еще веб базировался на нескольких известных СУРБД, однако уже сегодня пять, или около того, NoSQL-решений приняли эстафету.
 
-Even though these transitions seem to happen overnight, the reality is that they can take years to become accepted practice. The initial enthusiasm is driven by a relatively small set of developers and companies. Solutions are refined, lessons learned and seeing that a new technology is here to stay, others slowly try it for themselves. Again, this is particularly true in the case of NoSQL where many solutions aren't replacements for more traditional storage solutions, but rather address a specific need in addition to what one might get from traditional offerings.
+Несмотря на скачкообразность таких изменений, на деле могут понадобиться годы, чтобы они вошли в общепринятую практику. Начальный энтузиазм как правило охватывает небольшое число разработчиков и компаний. Решения оттачиваются, извлекаются уроки, - и, видя, что новая технология развивается, остальные пробуют применять её для своих нужд. Опять же, это касается сферы NoSQL, где множество технологий являются не столько прямой заменой более традиционным механизмам хранения, сколько являются решениями специальных проблем, в дополнение к тому, что можно ожидать от традиционных систем.
 
-Having said all of that, the first thing we ought to do is explain what is meant by NoSQL. It's a broad term that means different things to different people. Personally, I use it very broadly to mean a system that plays a part in the storage of data. Put another way, NoSQL (again, for me), is the belief that your persistence layer isn't necessarily the responsibility of a single system. Where relational database vendors have historically tried to position their software as a one-size-fits-all solution, NoSQL leans towards smaller units of responsibility where the best tool for a given job can be leveraged. So, your NoSQL stack might still leverage a relational databases, say MySQL, but it'll also contain Redis as a persistence lookup for specific parts of the system as well as Hadoop for your intensive data processing. Put simply, NoSQL is about being open and aware of alternative, existing and additional patterns and tools for managing your data.
+Принимая во внимание всё вышеизложенное, мы должны уяснить, чем же является NoSQL. Это широкий термин, в который означает разное для разных людей. Лично я использую его в широком смысле, чтобы обозначить систему, участвующую в хранении данных. С другой стороны NoSQL для меня означает убежденность в том, что задача хранения данных не возлагается на одну большую систему. В то время, как производители большинства баз данных исторически пытались позиционировать свой софт, как решение "всё в одном", NoSQL стремится к меньшему уровню ответственности - когда для определенных задач  может быть выбран такой инструмент, который бы решал именно эту задачу наилучшим образом. К примеру, ваш NoSQL-стек может эффективно использовать реляционные базы данных, как например MySQL, однако он также может включать в себя Redis - для организации хранения записей key-value или Hadoop - для интенсивной обработки данных. Проще говоря, NoSQL - это открытая технология, состоящая из альтернативных, существующих и дополнительных паттернов управления данными.
 
-You might be wondering where MongoDB fits into all of this. As a document-oriented database, Mongo is a more generalized NoSQL solution. It should be viewed as an alternative to relational databases. Like relational databases, it too can benefit from being paired with some of the more specialized NoSQL solutions. MongoDB has advantages and drawbacks, which we'll cover in later parts of this book. 
+Удивительно, но MongoDB подходит под все эти определения. Как документ-оринентированная СУБД, Mongo - это довольно-таки обобщенное NoSQL решение. Ее можно рассматривать, как альтернативу реляционным СУБД. Подобно реляционным СУБД, она также может выигрышно дополняться более специализированными NoSQL решниями. У MongoDB есть как достоинства, так и не достатки, о них мы поговорим в следующих частях книги. 
 
-As you may have noticed, we use the terms MongoDB and Mongo interchangeably.
+Как вы уже заметили, термины MongoDB и Mongo используются как синонимы.
 
 ## Приступая к работе ##
-Most of this book will focus on core MongoDB functionality. We'll therefore rely on the MongoDB shell. While the shell is useful to learn as well as being a useful administrative tool, your code will use a MongoDB driver.
+Большая часть книги освещает базовые возможности MongoDB. Поэтому нам понадобится консоль MongoDB. Консоль будет использоваться для учебных и административных задач, а в коде мы будем пользоваться драйвером MongoDB.
 
-This does bring up the first thing you should know about MongoDB: its drivers. MongoDB has a [number of official drivers](http://www.mongodb.org/display/DOCS/Drivers) for various languages. These drivers can be thought of as the various database drivers you are probably already familiar with. On top of these drivers, the development community has built more language/framework-specific libraries. For example, [NoRM](https://github.com/atheken/NoRM) is a C# library which implements LINQ, and [MongoMapper](https://github.com/jnunemaker/mongomapper) is a Ruby library which is ActiveRecord-friendly. Whether you choose to program directly against the core MongoDB drivers or some higher-level library is up to you. I point this out only because many people new to MongoDB are confused as to why there are both official drivers and community libraries - the former generally focuses on core communication/connectivity with MongoDB and the latter with more language and framework specific implementations.
+Мы подошли к первому, что надо знать о MongoDB: к её драйверам. У MongoDB есть [множество официальных драйверов](http://www.mongodb.org/display/DOCS/Drivers) для различных языков. Их можно рассматривать как драйвера уже привычных реляционных БД. На их основе сообщество разработчиков построило множество высокоуровневых драйверов - для определенных языков и фреймворков. Например, [NoRM](https://github.com/atheken/NoRM) это библиотека для C#, реализующая LINQ, а [MongoMapper](https://github.com/jnunemaker/mongomapper) для Ruby, с поддержкой ActiveRecord. Программировать напрямую, используя низкоуровневые драйвера MongoDB, или же с применением высокоуровневых библиотек - решайте сами. Я подробно остановился на этом, потому что множество новичков бывают сбиты с толку наличием как официальных драйверов, так и разрабатываемых сообществом - первые нацелены на  базовую коммуникацию с Mongo, в то время как вторые - больше на внедрение в конкретные языки и фреймворки.
 
-As you read through this, I encourage you to play with MongoDB to replicate what I demonstrate as well as to explore questions that might come up on your own. It's easy to get up and running with MongoDB, so let's take a few minutes now to set things up. 
+По мере чтения старайтесь воспроизводить демонстрируемые примеры, а также изучать вопросы, которые могут при этом возникнуть. Поднять у себя MongoDB просто, нам понадобится несколько минут, чтобы все настроить. 
 
-1. Head over to the [official download page](http://www.mongodb.org/downloads) and grab the binaries from the first row (the recommended stable version) for your operating system of choice. For development purposes, you can pick either 32-bit or 64-bit.
+1. Зайдите на [официальную страницу скачивания](http://www.mongodb.org/downloads) и скачайте бинарные файлы из первой строки (рекомендованную стабильную версию) для операционной системы, которую вы используете. Для разработки можно использовать как 32-, так и 64-разрядную версию.
 
-2. Extract the archive (wherever you want) and navigate to the `bin` subfolder. Don't execute anything just yet, but know that `mongod` is the server process and `mongo` is the client shell - these are the two executables we'll be spending most of our time with. 
+2. РАспакуйте архив (куда угодно) и перейдите в папку `bin`. Пока ничего не запускайте, но запомните, что `mongod` - это сервер, а  `mongo` - клиентская консоль - вот два исполняемых файла, с которыми нам чаще всего предстоит работать. 
 
-3. Create a new text file in the `bin` subfolder named `mongodb.config`
+3. Создайте новый файл в папке `bin` и назовите его `mongodb.config`
 
-4. Add a single line to your mongodb.config: `dbpath=PATH_TO_WHERE_YOU_WANT_TO_STORE_YOUR_DATABASE_FILES`. For example, on Windows you might do `dbpath=c:\mongodb\data` and on Linux you might do `dbpath=/etc/mongodb/data`. 
+4. Добавьте в mongodb.config одну строку: `dbpath=ПУТЬ_КУДА_ХОТЕТИ_СОХРАНИТЬ_ФАЙЛЫ_БАЗЫ_ДАННЫХ`. Например, в Windows можно написать `dbpath=c:\mongodb\data` а в Linux - `dbpath=/etc/mongodb/data`. 
 
-5. Make sure the `dbpath` you specified exists
+5. Убедитесь, что указанный вами путь `dbpath` существует.
 
-6. Launch mongod with the `--config /path/to/your/mongodb.config` parameter.
+6. Запустите mongod с параметром `--config /path/to/your/mongodb.config`.
 
-As an example for Windows users, if you extracted the downloaded file to `c:\mongodb\` and you created `c:\mongodb\data\` then within `c:\mongodb\bin\mongodb.config` you would specify `dbpath=c:\mongodb\data\`. You could then launch `mongod` from a command prompt via `c:\mongodb\bin\mongod --config c:\mongodb\bin\mongodb.config`.
+Для пользователей Windows, например, если вы распаковали скачанный файл в `c:\mongodb\` и создали папку `c:\mongodb\data\`, то в `c:\mongodb\bin\mongodb.config` следует указать `dbpath=c:\mongodb\data\`. Теперь можно запускать `mongod` из командной строки с помощью команды `c:\mongodb\bin\mongod --config c:\mongodb\bin\mongodb.config`.
 
-Feel free to add the `bin` folder to your path to make all of this less verbose. MacOSX and Linux users can follow almost identical directions. The only thing you should have to change are the paths.
+Папку `bin` можно для удобства добавить в переменную окружения `PATH`. Для пользователей MacOSX и Linux инструкции практически те же самые. Всё, что нужно сделать - это просто изменить пути.
 
-Hopefully you now have MonogDB up and running. If you get an error, read the output carefully - the server is quite good at explaining what's wrong.
+Надеюсь, теперь MonogDB у вас установлена и запущена. Если есть ошибки - внимательно читайте сообщения в консоли - сервер подробно и ясно выводит диагностические сообщения.
 
-You can now launch `mongo` (without the *d*) which will connect a shell to your running server. Try entering `db.version()` to make sure everything's working as it should. Hopefully you'll see the version number you installed.
+Теперь, чтобы подключиться к запущенному серверу, можете запустить `mongo` (без *d* в конце). Попробуйте ввести `db.version()`, чтобы убедиться, что все в порядке. Если всё нормально - вы увидите номер версии вашего сервера.
 
 \clearpage
 
-## Глава 1 - Основы ##
+## Chapter 1 - The Basics ##
 We begin our journey by getting to know the basic mechanics of working with MongoDB. Obviously this is core to understanding MongoDB, but it should also help us answer higher-level questions about where MongoDB fits.
 
 To get started, there are six simple concepts we need to understand.
@@ -128,7 +128,7 @@ Now, back to our discussion about schema-less collections. Insert a totally diff
 
 And, again use `find` to list the documents. Once we know a bit more, we'll discuss this interesting behavior of MongoDB, but hopefully you are starting to understand why the more traditional terminology wasn't a good fit.
 
-### Создание селекторов ###
+### Mastering Selectors ###
 In addition to the six concepts we've explored, there's one practical aspect of MongoDB you need to have a good grasp of before moving to more advanced topics: query selectors. A MongoDB query selector is like the `where` clause of an SQL statement. As such, you use it when finding, counting, updating and removing documents from collections. A selector is a JSON object , the simplest of which is `{}` which matches all documents (`null` works too). If we wanted to find all female unicorns, we could use `{gender:'f'}`.
 
 Before delving too deeply into selectors, let's set up some data to play with. First, remove what we've put so far in the `unicorns` collection via: `db.unicorns.remove()` (since we aren't supplying a selector, it'll remove all documents). Now, issue the following inserts to get some data we can play with (I suggest you copy and paste this):
@@ -172,12 +172,12 @@ The `ObjectId` which MongoDB generated for our `_id` field can be selected like 
 
 	db.unicorns.find({_id: ObjectId("TheObjectId")})
 
-### В этой главе ###
+### In This Chapter ###
 We haven't looked at the `update` command yet, or some of the fancier things we can do with `find`. However, we did get MongoDB up and running, looked briefly at the `insert` and `remove` commands (there isn't much more than what we've seen). We also introduced `find` and saw what MongoDB `selectors` were all about. We've had a good start and laid a solid foundation for things to come. Believe it or not, you actually know most of what there is to know about MongoDB - it really is meant to be quick to learn and easy to use. I strongly urge you to play with your local copy before moving on. Insert different documents, possibly in new collections, and get familiar with different selectors. Use `find`, `count` and `remove`. After a few tries on your own, things that might have seemed awkward at first will hopefully fall into place.
 
 \clearpage
 
-## Глава 2 - Updating ##
+## Chapter 2 - Updating ##
 In chapter 1 we introduced three of the four CRUD (create, read, update and delete) operations. This chapter is dedicated to the one we skipped over: `update`. `Update` has a few surprising behaviors, which is why we dedicate a chapter to it.
 
 ### Update: Replace Versus $set ###
@@ -672,8 +672,8 @@ You can disable the profiler by calling `setProfileLevel` again but changing the
 	//profile anything that takes more than 1 second
 	db.setProfilingLevel(1, 1000);
 
-### Backups and Restore ###
-Within the MongoDB `bin` folder is a `mongodump` executable. Simply executing `mongodump` will connect to localhost and backup all of your databases to a `dump` subfolder. You can type `mongodump --help` to see additional options. Common options are `--db DBNAME` to back up a specific database and `--collection COLLECTIONAME` to back up a specific collection. You can then use the `mongorestore` executable, located in the same `bin` folder, to restore a previously made backup. Again, the `--db` and `--collection` can be specified to restore a specific database and/or collection. 
+###Резервное копирование и восстановление ###
+В папке `bin` MongoDB есть утилита `mongodump`. Simply executing `mongodump` will connect to localhost and backup all of your databases to a `dump` subfolder. You can type `mongodump --help` to see additional options. Common options are `--db DBNAME` to back up a specific database and `--collection COLLECTIONAME` to back up a specific collection. You can then use the `mongorestore` executable, located in the same `bin` folder, to restore a previously made backup. Again, the `--db` and `--collection` can be specified to restore a specific database and/or collection. 
 
 For example, to back up our `learn` collection to a `backup` folder, we'd execute (this is its own executable which you run in a command/terminal window, not within the mongo shell itself):
 
