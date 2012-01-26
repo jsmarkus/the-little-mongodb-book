@@ -77,26 +77,26 @@ Karl Seguin - разработчик с опытом во многих обла�
 
 \clearpage
 
-## Chapter 1 - The Basics ##
-We begin our journey by getting to know the basic mechanics of working with MongoDB. Obviously this is core to understanding MongoDB, but it should also help us answer higher-level questions about where MongoDB fits.
+## Глава 1 - Основы ##
+Начнем мы с изучения основных механихмов работы с MongoDB. Это самое основное, что понадобится доля понимания MongoDB, но также мы коснемся высокоуровневых вопросов - о том, где применима MongoDB.
 
-To get started, there are six simple concepts we need to understand.
+Для начала нужно понять шесть основных концепций.
 
-1. MongoDB has the same concept of a 'database' with which you are likely already familiar (or a schema for you Oracle folks).  Within a MongoDB instance you can have zero or more databases, each acting as high-level containers for everything else.
+1. MongoDB - концептуально то же самое, что обычная, привычная нам база данных (или в терминологии Oracle - схема).  Внутри MongoDB может быть ноль или более баз данных, каждая из которых является контейнеров для прочих сущностей.
 
-2. A database can have zero or more 'collections'. A collection shares enough in common with a traditional 'table' that you can safely think of the two as the same thing.
+2. База данных может иметь ноль или более 'коллекций'. Коллекция настолько похожа на традиционную "таблицу", что можно смело считать их одним и тем же.
 
-3. Collections are made up of zero or more 'documents'. Again, a document can safely be thought of as a 'row'.
+3. Коллекции состоят из нуля или более "документов". Опять же, документ можно рассматривать как "запись".
 
-4. A document is made up of one or more 'fields', which you can probably guess are a lot like 'columns'.
+4. Документ состоит из одного или более "полей", которые - как можно догадаться - подобны "колонкам".
 
-5. 'Indexes' in MongoDB function much like their RDBMS counterparts.
+5. "Индексы" в MongoDB почти идентичны таковым в реляционных базах данных.
 
-6. 'Cursors' are different than the other five concepts but they are important enough, and often overlooked, that I think they are worthy of their own discussion.  The important thing to understand about cursors is that when you ask MongoDB for data, it returns a cursor, which we can do things to, such as counting or skipping ahead, without actually pulling down data.
+6. "Курсоры" отличаются от предыдущих пяти концепций, но они очень важны (хотя порой их обходят вниманием) и заслуживают отдельного обсуждения.  Важно понимать, что когда мы запрашиваем у MongoDB какие-либо данные, то она возвращает курсор, с которыми мы можем делать все что угодно - подсчитывать, пропускать определенное число предшествующих записей - при этом не загружая сами данные.
 
-To recap, MongoDB is made up of `databases` which contain `collections`. A `collection` is made up of `documents`. Each `document` is made up of `fields`. `Collections` can be `indexed`, which improves lookup and sorting performance. Finally, when we get data from MongoDB we do so through a `cursor` whose actual execution is delayed until necessary.
+Подводя итог, MongoDB состоит из "баз данных", которые состоят из "коллекций". "Коллекции" состоят из "документов". Каждый "документ" состоит из "полей". "Коллекции" могут быть проиндексированы, что улучшает производительность выборки и сортировки. И наконец, получение данных из MongoDB сводится к получению "курсора", который отдает эти данные по мере надобности.
 
-You might be wondering, why use new terminology (collection vs. table, document vs. row and field vs. column). Is it just to make things more complicated? The truth is that while these concepts are similar to their relational database counterparts, they are not identical. The core difference comes from the fact that relational databases define `columns` at the `table` level whereas a document-oriented database defines its `fields` at the `document` level. That is to say that each `document` within a `collection` can have its own unique set of `fields`.  As such, a `collection` is a dumbed down container in comparison to a `table`, while a `document` has a lot more information than a `row`.
+Вы можете спросить - зачем придумывать новые термины (коллекция вместо таблицы, документ вместо записи и поле вместо колонки)? Не излишнее ли это усложнение? Ответ в том, что эти термины, хоть и близки своим "реляционным" аналогам, но не полностью идентичны им. The core difference comes from the fact that relational databases define `columns` at the `table` level whereas a document-oriented database defines its `fields` at the `document` level. That is to say that each `document` within a `collection` can have its own unique set of `fields`.  As such, a `collection` is a dumbed down container in comparison to a `table`, while a `document` has a lot more information than a `row`.
 
 Although this is important to understand, don't worry if things aren't yet clear. It won't take more than a couple of inserts to see what this truly means. Ultimately, the point is that a collection isn't strict about what goes in it (it's schema-less). Fields are tracked with each individual document. The benefits and drawbacks of this will be explored in a future chapter.
 
