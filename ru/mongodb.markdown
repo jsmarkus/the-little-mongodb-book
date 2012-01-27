@@ -172,26 +172,26 @@ Karl Seguin - разработчик с опытом во многих обла�
 
 	db.unicorns.find({_id: ObjectId("TheObjectId")})
 
-### In This Chapter ###
-We haven't looked at the `update` command yet, or some of the fancier things we can do with `find`. However, we did get MongoDB up and running, looked briefly at the `insert` and `remove` commands (there isn't much more than what we've seen). We also introduced `find` and saw what MongoDB `selectors` were all about. We've had a good start and laid a solid foundation for things to come. Believe it or not, you actually know most of what there is to know about MongoDB - it really is meant to be quick to learn and easy to use. I strongly urge you to play with your local copy before moving on. Insert different documents, possibly in new collections, and get familiar with different selectors. Use `find`, `count` and `remove`. After a few tries on your own, things that might have seemed awkward at first will hopefully fall into place.
+### В этой главеr ###
+Мы пока еще не рассматривали команду `update` или более интересные вещи, которые можно сделать с помощью `find`. Однако мы подняли MongoDB, кратко изучили команды `insert` и  `remove` (изучив практически всё, что о них можно изучить) . Мы также начали исследовать `find` и узнали что такое селекторы MongoDB. Это неплохо для начала, и основы для дальнейшего изучения заложены. Верите или нет, но вы уже изучили практически всё, что нужно знать о MongoDB - настолько она проста и легка в изучении. Я настоятельно рекомендую вам поэкспериментировать с вашими данными, прежде, чем можно будет двигаться дальше. Вставьте несколько новых документов - возможно в новые коллекци - и поэкспериментируйте с селекторами. Используйте `find`, `count` и `remove`. После нескольких ваших собственных попыток вещи, казавшиеся непонятными, станут на свои места.
 
 \clearpage
 
-## Chapter 2 - Updating ##
-In chapter 1 we introduced three of the four CRUD (create, read, update and delete) operations. This chapter is dedicated to the one we skipped over: `update`. `Update` has a few surprising behaviors, which is why we dedicate a chapter to it.
+## Глава 2 - Обновление ##
+В первой главе мы изучили три из четырёх операций CRUD (create, read, update and delete). Эта глава посвящена четвёртой: `update`. У `update` имеются некоторые особенности, вот почему мы посвящаем этому целую главу.
 
-### Update: Replace Versus $set ###
-In its simplest form, `update` takes 2 arguments: the selector (where) to use and what field to update with. If Roooooodles had gained a bit of weight, we could execute:
+### Обновление данных: замена и $set ###
+В простейшей форме, `update` принимает 2 аргумента: селектор (where) для выборки и то, чем обновить соответствующее поле. Чтобы Roooooodles прибавил в весе, используем следующий запрос:
 
 	db.unicorns.update({name: 'Roooooodles'}, {weight: 590})
 
-(if you've played with your `unicorns` collection and it doesn't have the original data anymore, go ahead and `remove` all documents and re-insert from the code in chapter 1.)
+(Если в ходе экспериментов вы удалили данные из ранее созданной коллекции `unicorns`, сделайте всем документам `remove`, и вставьте их заново с помощью кода из главы 1)
 
-If this was real code, you'd probably update your records by `_id`, but since I don't know what `_id` MongoDB generated for you, we'll stick to `names`.  Now, if we look at the updated record:
+В реальной жизни, конечно, следует обновлять документы, выбирая их по `_id`, однако, поскольку я не знаю какой `_id` MongoDB сгенерировала для вас, будем выбирать по имени - `name`.  Теперь, давайте взглянем на обновленную запись:
 
 	db.unicorns.find({name: 'Roooooodles'})
 
-You should discover `updates` first surprise. No document is found because the second parameter we supply is used to **replace** the original. In other words, the `update` found a document by `name` and replaced the entire document with the new document (the 2nd parameter). This is different than how SQL's `update` command works. In some situations, this is ideal and can be leveraged for some truly dynamic updates. However, when all you want to do is change the value of one, or a few fields, you are best to use MongoDB's `$set` modifier:
+Вот и первый сюрприз, который нам преподнёс `update`. Документ не найден, поскольку второй параметр используется для **полной замены** оригинала. Иными словами, `update` нашел документ по имени и заменил его целиком на новый документ (свой второй параметр). Вот в чём отличие от SQL-команды `UPDATE`. In some situations, this is ideal and can be leveraged for some truly dynamic updates. However, when all you want to do is change the value of one, or a few fields, you are best to use MongoDB's `$set` modifier:
 
 	db.unicorns.update({weight: 590}, {$set: {name: 'Roooooodles', dob: new Date(1979, 7, 18, 18, 44), loves: ['apple'], gender: 'm', vampires: 99}})
 
