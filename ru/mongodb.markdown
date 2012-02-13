@@ -1,6 +1,7 @@
 \thispagestyle{empty}
 \changepage{}{}{}{-1.5cm}{}{2cm}{}{}{}
-![The Little MongoDB Book, By Karl Seguin](title.png)\ 
+
+![The Little MongoDB Book, By Karl Seguin](title.png)
 
 \clearpage
 \changepage{}{}{}{1.5cm}{}{-2cm}{}{}{}
