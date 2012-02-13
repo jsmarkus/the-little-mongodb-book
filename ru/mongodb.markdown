@@ -31,6 +31,15 @@ Karl Seguin - разработчик с опытом во многих обла�
 
 <http://github.com/karlseguin/the-little-mongodb-book>.
 
+## О переводе ##
+
+Перевёл на русский язык [@jsmarkus](https://github.com/jsmarkus/) (хабраюзер [markpnk](http://habrahabr.ru/users/markpnk/)).
+
+Корректоры:
+
+ * [Денис Веселов](https://github.com/saippuakauppias) (хабраюзер [progrik](http://habrahabr.ru/users/progrik/)).
+ * [Павел Вирский](https://github.com/Paaashka) (хабраюзер [Paaashka](http://habrahabr.ru/users/Paaashka/)).
+
 \clearpage
 
 ## Введение ##
