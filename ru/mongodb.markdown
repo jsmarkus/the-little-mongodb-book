@@ -1,5 +1,3 @@
-![The Little MongoDB Book, By Karl Seguin](title.png)
-
 # О книге #
 
 ## Лицензия ##
