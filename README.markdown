@@ -14,7 +14,7 @@ The book is freely distributed under the [Attribution-NonCommercial 3.0 Unported
 
 ## Formats ##
 
-The book is written in [Markdown](http://daringfireball.net/projects/markdown/) and converted to PDF using [PanDoc](http://johnmacfarlane.net/pandoc/).
+The book is written in [Markdown](http://daringfireball.net/projects/markdown/) and converted to PDF using [Pandoc](http://johnmacfarlane.net/pandoc/).
 
 ## Title Image ##
 
@@ -24,10 +24,26 @@ A PSD of the title image is included. The font used is [Comfortaa](http://www.da
 
 ## Generating the PDF ##
 
+### Requirements
+
+You need some packages and tools installed.
+
+* TeX. For Arch Linux packages are (for other distributions packages are pretty similar):
+	* `texlive-core`
+	* `texlive-langcyrillic`
+	* `texlive-latexextra`
+	* `xelatex-extra` (AUR)
+* Pandoc.
+* Fonts.
+	* Droid.
+	* Linux Libertine.
+
+### Generating
+
 Just run such command to generate russian version:
 
-	pandoc --latex-engine xelatex --template common/pdf/template.tex ru/mongodb.markdown -o mongodb.pdf
+	make pdf-ru
 
 Or another one to generate english version:
 
-	pandoc --latex-engine xelatex --template common/pdf/template.tex en/mongodb.markdown -o mongodb.pdf
+	make pdf-en
