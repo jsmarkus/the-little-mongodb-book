@@ -1,0 +1,113 @@
+\documentclass[a4paper, 12pt]{article}
+
+
+% Fonts and typography
+
+%% Enable typography stuff
+\usepackage[no-math]{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+
+%% Fonts
+
+\setmainfont{Linux Libertine}
+
+\newfontfamily\cyrillicfontsf[Scale=MatchLowercase]{PT Sans}
+\setsansfont{Droid Sans}
+
+\newfontfamily\cyrillicfonttt[Scale=MatchLowercase]{Droid Sans Mono}
+\setmonofont{Droid Sans Mono}
+
+%% Set Sans font in titles
+\usepackage{sectsty}
+\allsectionsfont{\sffamily}
+
+% Configure polyglossia languages
+\usepackage{polyglossia}
+\setdefaultlanguage{russian}
+\setotherlanguage{english}
+
+
+% Page
+
+\usepackage{geometry}
+\geometry{
+  left = 2cm,
+  right = 2cm,
+  top = 1.5cm,
+  bottom = 2 cm
+}
+
+% Set line spacing
+\usepackage{setspace}
+\setstretch{1.1}
+
+% Enable first indention in section
+\usepackage{indentfirst}
+\parindent=2em
+
+% Start sections from new page
+\let\stdsection\section
+\renewcommand\section{\newpage\stdsection}
+
+
+% Colors
+
+\usepackage{xcolor}
+
+%% Tango color palette
+\definecolor{DarkSkyBlue}{rgb}{0.12,0.29,0.53}
+
+
+% Links
+
+%% Hyperref
+\usepackage[colorlinks, breaklinks, bookmarks, xetex]{hyperref}
+
+%% Do not use Mono font for URL
+\urlstyle{same}
+
+\hypersetup{
+  linkcolor = DarkSkyBlue,
+  citecolor = DarkSkyBlue,
+  filecolor = DarkSkyBlue,
+  urlcolor = DarkSkyBlue,
+}
+
+
+% Images
+
+%% Path for language-specific sub-directories and root directory
+\graphicspath{{./common/images/},{../common/images/}}
+
+
+% Pandoc hacks
+
+%% For normal enumerates processing
+\usepackage{enumerate}
+
+%% Disable section numbers
+\setcounter{secnumdepth}{0}
+
+%% Highlight languages with Pandoc internal suite
+$highlighting-macros$
+
+
+\begin{document}
+
+  % Title page
+
+  \thispagestyle{empty}
+
+  \vspace*{\fill}
+    \begin{center}
+      \includegraphics[width=0.8\textwidth]{title}
+    \end{center}
+  \vspace*{\fill}
+
+  \setcounter{page}{0}
+
+  % Book contents
+
+  $body$
+
+\end{document}

@@ -1,2 +1,0 @@
-% The Little MongoDB Book
-% Karl Seguin
