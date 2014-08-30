@@ -1,137 +1,147 @@
 \thispagestyle{empty}
 \changepage{}{}{}{-1.5cm}{}{2cm}{}{}{}
-![The Little MongoDB Book, By Karl Seguin](title.png)\ 
+
+![The Little MongoDB Book, By Karl Seguin](title.png)
 
 \clearpage
 \changepage{}{}{}{1.5cm}{}{-2cm}{}{}{}
 
-## About This Book ##
+## О книге ##
 
-### License ###
-The Little MongoDB Book book is licensed under the Attribution-NonCommercial 3.0 Unported license. **You should not have paid for this book.**
+### Лицензия ###
+The Little MongoDB Book (Маленькая книга о MongoDB) распространяется под лицензией Attribution-NonCommercial 3.0 Unported. **Вы не должны платить за эту книгу.**
 
-You are basically free to copy, distribute, modify or display the book. However, I ask that you always attribute the book to me, Karl Seguin and do not use it for commercial purposes.
+Разрешается свободно копировать, распространять, изменять или публиковать данную книгу. Однако, прошу всегда ссылаться на автора — Karl Seguin — и не использовать книгу в коммерческих целях.
 
-You can see the full text of the license at:
+Полный текст лицензии всегда можно прочитать здесь:
 
 <http://creativecommons.org/licenses/by-nc/3.0/legalcode>
 
-### About The Author ###
-Karl Seguin is a developer with experience across various fields and technologies. He's an expert .NET and Ruby developer.  He's a semi-active contributor to OSS projects, a technical writer and an occasional speaker. With respect to MongoDB, he was a core contributor to the C# MongoDB library NoRM, wrote the interactive tutorial [mongly](http://mongly.com) as well as the [Mongo Web Admin](https://github.com/karlseguin/Mongo-Web-Admin). His free service for casual game developers, [mogade.com](http://mogade.com/), is powered by MongoDB.
+### Об авторе ###
+Karl Seguin — разработчик с опытом во многих областях и технологиях. Он является .NET- и Ruby-разработчиком с большим опытом работы.  Также участвует в open-source проектах, является техническим писателем и нерегулярным докладчиком на конференциях. Применительно к MongoDB, он был разработчиком ядра C# MongoDB библиотеки NoRM, написал интерактивный учебник [mongly](http://mongly.com) и [Mongo Web Admin](https://github.com/karlseguin/Mongo-Web-Admin). Его бесплатный сервис для разработчиков казуальных игр, [mogade.com](http://mogade.com/), работает на MongoDB.
 
-Karl has since written [The Little Redis Book](http://openmymind.net/2012/1/23/The-Little-Redis-Book/)
+Карл также написал книгу [The Little Redis Book](http://openmymind.net/2012/1/23/The-Little-Redis-Book/)
 
-His blog can be found at <http://openmymind.net>, and he tweets via [@karlseguin](http://twitter.com/karlseguin)
+Вот его блог: <http://openmymind.net>, и твиттер: [@karlseguin](http://twitter.com/karlseguin)
 
-### With Thanks To ###
-A special thanks to [Perry Neal](http://twitter.com/perryneal) for lending me his eyes, mind and passion. You provided me with invaluable help. Thank you.
+### Благодарности ###
+Особая благодарность [Perry Neal](http://twitter.com/perryneal) за ум, внимание и энтузиазм. Ты оказал мне неоценимую помощь. Спасибо.
 
-### Latest Version ###
-The latest source of this book is available at: 
+### Последняя версия ###
+Свежие исходники книги доступны по адресу: 
 
 <http://github.com/karlseguin/the-little-mongodb-book>.
 
-\clearpage
+## О переводе ##
 
-## Introduction ##
- > It's not my fault the chapters are short, MongoDB is just easy to learn.
+Перевёл на русский язык [@jsmarkus](https://github.com/jsmarkus/) (хабраюзер [markpnk](http://habrahabr.ru/users/markpnk/)).
 
-It is often said that technology moves at a blazing pace. It's true that there is an ever growing list of new technologies and techniques being released. However, I've long been of the opinion that the fundamental technologies used by programmers move at a rather slow pace. One could spend years   learning little yet remain relevant. What is striking though is the speed at which established technologies get replaced. Seemingly over-night, long established technologies find themselves threatened by shifts in developer focus.
+Корректоры:
 
-Nothing could be more representative of this sudden shift than the progress of NoSQL technologies against well-established relational databases. It almost seems like one day the web was being driven by a few RDBMS' and the next, five or so NoSQL solutions had established themselves as worthy solutions.
-
-Even though these transitions seem to happen overnight, the reality is that they can take years to become accepted practice. The initial enthusiasm is driven by a relatively small set of developers and companies. Solutions are refined, lessons learned and seeing that a new technology is here to stay, others slowly try it for themselves. Again, this is particularly true in the case of NoSQL where many solutions aren't replacements for more traditional storage solutions, but rather address a specific need in addition to what one might get from traditional offerings.
-
-Having said all of that, the first thing we ought to do is explain what is meant by NoSQL. It's a broad term that means different things to different people. Personally, I use it very broadly to mean a system that plays a part in the storage of data. Put another way, NoSQL (again, for me), is the belief that your persistence layer isn't necessarily the responsibility of a single system. Where relational database vendors have historically tried to position their software as a one-size-fits-all solution, NoSQL leans towards smaller units of responsibility where the best tool for a given job can be leveraged. So, your NoSQL stack might still leverage a relational databases, say MySQL, but it'll also contain Redis as a persistence lookup for specific parts of the system as well as Hadoop for your intensive data processing. Put simply, NoSQL is about being open and aware of alternative, existing and additional patterns and tools for managing your data.
-
-You might be wondering where MongoDB fits into all of this. As a document-oriented database, Mongo is a more generalized NoSQL solution. It should be viewed as an alternative to relational databases. Like relational databases, it too can benefit from being paired with some of the more specialized NoSQL solutions. MongoDB has advantages and drawbacks, which we'll cover in later parts of this book. 
-
-As you may have noticed, we use the terms MongoDB and Mongo interchangeably.
-
-## Getting Started ##
-Most of this book will focus on core MongoDB functionality. We'll therefore rely on the MongoDB shell. While the shell is useful to learn as well as being a useful administrative tool, your code will use a MongoDB driver.
-
-This does bring up the first thing you should know about MongoDB: its drivers. MongoDB has a [number of official drivers](http://www.mongodb.org/display/DOCS/Drivers) for various languages. These drivers can be thought of as the various database drivers you are probably already familiar with. On top of these drivers, the development community has built more language/framework-specific libraries. For example, [NoRM](https://github.com/atheken/NoRM) is a C# library which implements LINQ, and [MongoMapper](https://github.com/jnunemaker/mongomapper) is a Ruby library which is ActiveRecord-friendly. Whether you choose to program directly against the core MongoDB drivers or some higher-level library is up to you. I point this out only because many people new to MongoDB are confused as to why there are both official drivers and community libraries - the former generally focuses on core communication/connectivity with MongoDB and the latter with more language and framework specific implementations.
-
-As you read through this, I encourage you to play with MongoDB to replicate what I demonstrate as well as to explore questions that might come up on your own. It's easy to get up and running with MongoDB, so let's take a few minutes now to set things up. 
-
-1. Head over to the [official download page](http://www.mongodb.org/downloads) and grab the binaries from the first row (the recommended stable version) for your operating system of choice. For development purposes, you can pick either 32-bit or 64-bit.
-
-2. Extract the archive (wherever you want) and navigate to the `bin` subfolder. Don't execute anything just yet, but know that `mongod` is the server process and `mongo` is the client shell - these are the two executables we'll be spending most of our time with. 
-
-3. Create a new text file in the `bin` subfolder named `mongodb.config`
-
-4. Add a single line to your mongodb.config: `dbpath=PATH_TO_WHERE_YOU_WANT_TO_STORE_YOUR_DATABASE_FILES`. For example, on Windows you might do `dbpath=c:\mongodb\data` and on Linux you might do `dbpath=/etc/mongodb/data`. 
-
-5. Make sure the `dbpath` you specified exists
-
-6. Launch mongod with the `--config /path/to/your/mongodb.config` parameter.
-
-As an example for Windows users, if you extracted the downloaded file to `c:\mongodb\` and you created `c:\mongodb\data\` then within `c:\mongodb\bin\mongodb.config` you would specify `dbpath=c:\mongodb\data\`. You could then launch `mongod` from a command prompt via `c:\mongodb\bin\mongod --config c:\mongodb\bin\mongodb.config`.
-
-Feel free to add the `bin` folder to your path to make all of this less verbose. MacOSX and Linux users can follow almost identical directions. The only thing you should have to change are the paths.
-
-Hopefully you now have MonogDB up and running. If you get an error, read the output carefully - the server is quite good at explaining what's wrong.
-
-You can now launch `mongo` (without the *d*) which will connect a shell to your running server. Try entering `db.version()` to make sure everything's working as it should. Hopefully you'll see the version number you installed.
+ * [Денис Веселов](https://github.com/saippuakauppias) (хабраюзер [progrik](http://habrahabr.ru/users/progrik/)).
+ * [Павел Вирский](https://github.com/Paaashka) (хабраюзер [Paaashka](http://habrahabr.ru/users/Paaashka/)).
 
 \clearpage
 
-## Chapter 1 - The Basics ##
-We begin our journey by getting to know the basic mechanics of working with MongoDB. Obviously this is core to understanding MongoDB, but it should also help us answer higher-level questions about where MongoDB fits.
+## Введение ##
+ > Не моя вина, что книга такая короткая, просто MongoDB легка в освоении.
 
-To get started, there are six simple concepts we need to understand.
+Технологии развиваются семимильными шагами. Список новых технологий и методологий постоянно растёт. Однако, я всегда придерживался мнения, что фундаментальные технологии, используемые программистами, развиваются не столь стремительно. Можно долгое время обладать актуальными знаниями, не пополняя их. Однако зачастую устоявшиеся технологии заменяются другими с потрясающей скоростью. Внезапные скачки разработок иногда ставят под угрозу устоявшиеся старые технологии.
 
-1. MongoDB has the same concept of a 'database' with which you are likely already familiar (or a schema for you Oracle folks).  Within a MongoDB instance you can have zero or more databases, each acting as high-level containers for everything else.
+Яркий пример того — прогресс NoSQL-технологий, приходящих на замену давно известным реляционным базам данных. Вчера ещё веб базировался на нескольких известных СУРБД, однако уже сегодня появилось около пяти NoSQL-решений, достойно зарекомендовших себя.
 
-2. A database can have zero or more 'collections'. A collection shares enough in common with a traditional 'table' that you can safely think of the two as the same thing.
+Несмотря на скачкообразность таких изменений, на деле могут понадобиться годы, чтобы они вошли в общепринятую практику. Начальный энтузиазм, как правило, охватывает небольшое число разработчиков и компаний. Решения оттачиваются, извлекаются уроки, — и, видя, что новая технология развивается, остальные пробуют применять её для своих нужд. Опять же, это касается сферы NoSQL, где множество технологий являются не столько прямой заменой более традиционным механизмам хранения, сколько являются решениями специальных проблем, в дополнение к тому, что можно ожидать от традиционных систем.
 
-3. Collections are made up of zero or more 'documents'. Again, a document can safely be thought of as a 'row'.
+Принимая во внимание всё вышеизложенное, мы должны уяснить, чем же является NoSQL. Это широкий термин, который означает разное для разных людей. Лично я использую его в широком смысле, чтобы обозначить систему, участвующую в хранении данных. С другой стороны NoSQL для меня означает убеждённость в том, что задача хранения данных не возлагается на одну большую систему. В то время, как производители большинства баз данных исторически пытались позиционировать свой софт, как решение «всё в одном», NoSQL стремится к меньшему уровню ответственности — когда для определённых задач может быть выбран такой инструмент, который бы решал именно эту задачу наилучшим образом. К примеру, ваш NoSQL-стек может эффективно использовать реляционные базы данных, как например MySQL, однако он также может включать в себя Redis — для организации хранения записей key-value или Hadoop — для интенсивной обработки данных. Проще говоря, NoSQL — это открытая технология, состоящая из альтернативных, существующих и дополнительных шаблонов управления данными.
 
-4. A document is made up of one or more 'fields', which you can probably guess are a lot like 'columns'.
+Удивительно, но MongoDB подходит под все эти определения. Как документ-ориентированная СУБД, Mongo — это довольно-таки обобщённое NoSQL решение. Её можно рассматривать, как альтернативу реляционным СУБД. Подобно реляционным СУБД, она также может выигрышно дополняться более специализированными NoSQL решениями. У MongoDB есть как достоинства, так и недостатки, о них мы поговорим в следующих частях книги. 
 
-5. 'Indexes' in MongoDB function much like their RDBMS counterparts.
+Как вы уже заметили, термины MongoDB и Mongo используются как синонимы.
 
-6. 'Cursors' are different than the other five concepts but they are important enough, and often overlooked, that I think they are worthy of their own discussion.  The important thing to understand about cursors is that when you ask MongoDB for data, it returns a cursor, which we can do things to, such as counting or skipping ahead, without actually pulling down data.
+## Приступая к работе ##
+Большая часть книги освещает базовые возможности MongoDB. Поэтому нам понадобится консоль MongoDB. Консоль будет использоваться для учебных и административных задач, а в коде мы будем пользоваться драйвером MongoDB.
 
-To recap, MongoDB is made up of `databases` which contain `collections`. A `collection` is made up of `documents`. Each `document` is made up of `fields`. `Collections` can be `indexed`, which improves lookup and sorting performance. Finally, when we get data from MongoDB we do so through a `cursor` whose actual execution is delayed until necessary.
+Мы подошли к первому, что надо знать о MongoDB: к её драйверам. У MongoDB есть [множество официальных драйверов](http://www.mongodb.org/display/DOCS/Drivers) для различных языков. Их можно рассматривать как драйверы уже привычных реляционных БД. На их основе сообщество разработчиков построило множество высокоуровневых драйверов — для определённых языков и фреймворков. Например, [NoRM](https://github.com/atheken/NoRM) это библиотека для C#, реализующая LINQ, а [MongoMapper](https://github.com/jnunemaker/mongomapper) для Ruby, с поддержкой ActiveRecord. Программировать напрямую, используя низкоуровневые драйверы MongoDB, или же с применением высокоуровневых библиотек — решайте сами. Я подробно остановился на этом, потому что множество новичков бывают сбиты с толку наличием как официальных драйверов, так и разрабатываемых сообществом — первые нацелены на базовую коммуникацию с Mongo, в то время как вторые — больше на внедрение в конкретные языки и фреймворки.
 
-You might be wondering, why use new terminology (collection vs. table, document vs. row and field vs. column). Is it just to make things more complicated? The truth is that while these concepts are similar to their relational database counterparts, they are not identical. The core difference comes from the fact that relational databases define `columns` at the `table` level whereas a document-oriented database defines its `fields` at the `document` level. That is to say that each `document` within a `collection` can have its own unique set of `fields`.  As such, a `collection` is a dumbed down container in comparison to a `table`, while a `document` has a lot more information than a `row`.
+По мере чтения старайтесь воспроизводить демонстрируемые примеры, а также изучать вопросы, которые могут при этом возникнуть. Поднять у себя MongoDB просто, нам понадобится несколько минут, чтобы все настроить. 
 
-Although this is important to understand, don't worry if things aren't yet clear. It won't take more than a couple of inserts to see what this truly means. Ultimately, the point is that a collection isn't strict about what goes in it (it's schema-less). Fields are tracked with each individual document. The benefits and drawbacks of this will be explored in a future chapter.
+1. Зайдите на [официальную страницу скачивания](http://www.mongodb.org/downloads) и скачайте бинарные файлы из первой строки (рекомендованную стабильную версию) для операционной системы, которую вы используете. Для разработки можно использовать как 32-, так и 64-разрядную версию.
 
-Let's get hands-on. If you don't have it running already, go ahead and start the `mongod` server as well as a mongo shell. The shell runs JavaScript. There are some global commands you can execute, like `help` or `exit`. Commands that you execute against the current database are executed against the `db` object, such as `db.help()` or `db.stats()` . Commands that you execute against a specific collection, which is what we'll be doing a lot of, are executed against the `db.COLLECTION_NAME` object, such as `db.unicorns.help()` or `db.unicorns.count()`.
+2. Распакуйте архив (куда угодно) и перейдите в папку `bin`. Пока ничего не запускайте, но запомните, что `mongod` — это сервер, а  `mongo` — клиентская консоль — вот два исполняемых файла, с которыми нам чаще всего предстоит работать.
 
-Go ahead and enter `db.help()`, you'll get a list of commands that you can execute against the `db` object.
+3. Создайте новый файл в папке `bin` и назовите его `mongodb.config`
 
-A small side note. Because this is a JavaScript shell, if you execute a method and omit the parentheses `()`, you'll see the method body rather than executing the method. I only mention it because the first time you do it and get a response that starts with `function (...){` you won't be surprised. For example, if you enter `db.help` (without the parentheses), you'll see the internal implementation of the `help` method.
+4. Добавьте в mongodb.config одну строку: `dbpath=ПУТЬ_КУДА_ХОТИТЕ_СОХРАНИТЬ_ФАЙЛЫ_БАЗЫ_ДАННЫХ`. Например, в Windows можно написать `dbpath=c:\mongodb\data` а в Linux — `dbpath=/etc/mongodb/data`.
 
-First we'll use the global `use` method to switch databases, go ahead and enter `use learn`. It doesn't matter that the database doesn't really exist yet. The first collection that we create will also create the actual `learn` database. Now that you are inside a database, you can start issuing database commands, like `db.getCollectionNames()`. If you do so, you should get an empty array (`[ ]`). Since collections are schema-less, we don't explicitly need to create them. We can simply insert a document into a new collection. To do so, use the `insert` command, supplying it with the document to insert:
+5. Убедитесь, что указанный вами путь `dbpath` существует.
+
+6. Запустите mongod с параметром `--config /path/to/your/mongodb.config`.
+
+Для пользователей Windows, например, если вы распаковали скачанный файл в `c:\mongodb\` и создали папку `c:\mongodb\data\`, то в `c:\mongodb\bin\mongodb.config` следует указать `dbpath=c:\mongodb\data\`. Теперь можно запускать `mongod` из командной строки с помощью команды `c:\mongodb\bin\mongod --config c:\mongodb\bin\mongodb.config`.
+
+Папку `bin` можно для удобства добавить в переменную окружения `PATH`. Для пользователей MacOSX и Linux инструкции практически те же самые. Всё, что нужно сделать — это просто изменить пути.
+
+Надеюсь, теперь MongoDB у вас установлена и запущена. Если есть ошибки — внимательно читайте сообщения в консоли — сервер подробно и ясно выводит диагностические сообщения.
+
+Теперь, чтобы подключиться к запущенному серверу, можете запустить `mongo` (без *d* в конце). Попробуйте ввести `db.version()`, чтобы убедиться, что всё в порядке. Если всё нормально — вы увидите номер версии вашего сервера.
+
+\clearpage
+
+## Глава 1 — Основы ##
+Начнём мы с изучения основных механизмов работы с MongoDB. Это самое основное, что понадобится для понимания MongoDB, но также мы коснёмся высокоуровневых вопросов — о том, где применима MongoDB.
+
+Для начала нужно понять шесть основных концепций.
+
+1. MongoDB — концептуально то же самое, что обычная, привычная нам база данных (или в терминологии Oracle — схема).  Внутри MongoDB может быть ноль или более баз данных, каждая из которых является контейнером для прочих сущностей.
+
+2. База данных может иметь ноль или более «коллекций». Коллекция настолько похожа на традиционную «таблицу», что можно смело считать их одним и тем же.
+
+3. Коллекции состоят из нуля или более «документов». Опять же, документ можно рассматривать как «строку».
+
+4. Документ состоит из одного или более «полей», которые — как можно догадаться — подобны «колонкам».
+
+5. «Индексы» в MongoDB почти идентичны таковым в реляционных базах данных.
+
+6. «Курсоры» отличаются от предыдущих пяти концепций, но они очень важны (хотя порой их обходят вниманием) и заслуживают отдельного обсуждения.  Важно понимать, что когда мы запрашиваем у MongoDB какие-либо данные, то она возвращает курсор, с которыми мы можем делать все что угодно — подсчитывать, пропускать определённое число предшествующих записей — при этом не загружая сами данные.
+
+Подводя итог, MongoDB состоит из «баз данных», которые состоят из «коллекций». «Коллекции» состоят из «документов». Каждый «документ» состоит из «полей». «Коллекции» могут быть проиндексированы, что улучшает производительность выборки и сортировки. И наконец, получение данных из MongoDB сводится к получению «курсора», который отдаёт эти данные по мере надобности.
+
+Вы можете спросить — зачем придумывать новые термины (коллекция вместо таблицы, документ вместо записи и поле вместо колонки)? Не излишнее ли это усложнение? Ответ в том, что эти термины, хоть и близки своим «реляционным» аналогам, но не полностью идентичны им. Основное различие в том, что реляционные базы данных определяют «колонки» на уровне «таблицы», в то время как документ-ориентированные базы данных определяют «поля» на уровне «документа». Это значит, что любой документ внутри коллекции может иметь свой собственный уникальный набор полей.  В этом смысле `коллекция` «глупее» чем `таблица`, тогда как `документ` имеет намного больше информации, чем `строка`.
+
+Хоть это и важно понять, не волнуйтесь, если не сможете сразу. После нескольких вставок вы увидите, что имеется в виду. В конечном счёте дело в том, что коллекция не содержит информации о структуре содержащихся в ней данных. Информацию о полях содержит каждый отдельный документ. Преимущества и недостатки этого станут понятны из следующей главы.
+
+Приступим. Запустите сервер `mongod` и консоль `mongo`, если ещё не запустили. Консоль работает на JavaScript. Есть несколько глобальных команд, например `help` или `exit`. Команды, которые вы запускаете применительно к текущей базе данных исполняются у объекта `db`, например `db.help()` или `db.stats()` . Команды, которые вы запускаете применительно к конкретной коллекции, исполняются у объекта `db.ИМЯ_КОЛЛЕКЦИИ`, например `db.unicorns.help()` или `db.unicorns.count()` .
+
+Введите `db.help()` и получите список команд, которые можно выполнить у объекта `db`.
+
+Заметка на полях. Поскольку консоль интерпретирует JavaScript, если вы попытаетесь выполнить метод без скобок, то в ответ получите тело метода, но он не выполнится. Не удивляйтесь, увидев `function (...){`, если случайно сделаете так. Например, если введёте `db.help` (без скобок), вы увидите внутреннее представление метода `help`.
+
+Сперва для выбора базы данных воспользуемся глобальным методом `use` — введите `use learn`. Неважно, что база данных пока ещё не существует. В момент создания первой коллекции создастся база данных `learn`. Теперь, когда вы внутри базы данных, можно вызывать у неё команды, например `db.getCollectionNames()`. В ответ увидите пустой массив (`[ ]`). Поскольку коллекции бесструктурны *(в оригинале «schema-less». Здесь и далее — прим. перев.)*, мы не обязаны создавать их явно. Мы просто можем вставить документ в новую коллекцию. Чтобы это сделать, используйте команду `insert`, передав ей вставляемый документ:
 
 	db.unicorns.insert({name: 'Aurora', gender: 'f', weight: 450})
 
-The above line is executing `insert` against the `unicorns` collection, passing it a single argument. Internally MongoDB uses a binary serialized JSON format. Externally, this means that we use JSON a lot, as is the case with our parameters. If we execute `db.getCollectionNames()` now, we'll actually see two collections: `unicorns` and `system.indexes`. `system.indexes` is created once per database and contains the information on our databases index. 
+Данная строка выполняет метод `insert` («вставить») в коллекцию `unicorns`, передавая ему единственный аргумент. MongoDB у себя внутри использует бинарный сериализированный JSON формат. Снаружи это означает, что мы широко используем JSON, как, например, в случае с нашими параметрами. Если теперь выполнить `db.getCollectionNames()`, мы увидим две коллекции: `unicorns` и `system.indexes`. `system.indexes` создаётся в каждой базе данных и содержит в себе информацию об индексах этой базы. 
 
-You can now use the `find` command against `unicorns` to return a list of documents:
+Теперь у коллекции `unicorns` можно вызвать метод `find`, который вернёт список документов:
 
 	db.unicorns.find()
 
-Notice that, in addition to the data you specified, there's an `_id` field. Every document must have a unique `_id` field. You can either generate one yourself or let MongoDB generate an ObjectId for you. Most of the time you'll probably want to let MongoDB generate it for you. By default, the `_id` field is indexed - which explains why the `system.indexes` collection was created. You can look at `system.indexes`:
+Заметьте, что кроме данных, которые мы задавали, появилось дополнительное поле `_id` . Каждый документ должен иметь уникальное поле `_id`. Можете генерировать его сами или позволить MongoDB самой сгенерировать для вас ObjectId. В большинстве случаев вы скорее всего возложите эту задачу на MongoDB. По умолчанию `_id` — индексируемое поле, вследствие чего и создается коллекция `system.indexes`. Давайте взглянем на `system.indexes`:
 
 	db.system.indexes.find()
 
-What you're seeing is the name of the index, the database and collection it was created against and the fields included in the index.
+Вы увидите имя индекса, базы данных и коллекции, для которой индекс был создан, а также полей, которые включены в него.
 
-Now, back to our discussion about schema-less collections. Insert a totally different document into `unicorns`, such as:
+Вернёмся к обсуждению бесструктурных коллекций. Давайте вставим кардинально отличный от предыдущего документ в `unicorns`, вот такой:
 
 	db.unicorns.insert({name: 'Leto', gender: 'm', home: 'Arrakeen', worm: false})
 
-And, again use `find` to list the documents. Once we know a bit more, we'll discuss this interesting behavior of MongoDB, but hopefully you are starting to understand why the more traditional terminology wasn't a good fit.
+И снова воспользуемся `find` для просмотра списка документов. Теперь, узнав чуть больше, мы можем обсудить это интересное поведение MongoDB, но, надеюсь, вы уже начинаете понимать, почему традиционная терминология здесь не совсем применима.
 
-### Mastering Selectors ###
-In addition to the six concepts we've explored, there's one practical aspect of MongoDB you need to have a good grasp of before moving to more advanced topics: query selectors. A MongoDB query selector is like the `where` clause of an SQL statement. As such, you use it when finding, counting, updating and removing documents from collections. A selector is a JSON object , the simplest of which is `{}` which matches all documents (`null` works too). If we wanted to find all female unicorns, we could use `{gender:'f'}`.
+### Осваиваем селекторы ###
+В дополнение к изученным ранее шести концепциям, есть ещё один немаловажный практический аспект MongoDB, который следует освоить, прежде чем переходить к более сложным темам: это — селекторы запросов. Селектор запросов MongoDB аналогичен предложению `where` SQL-запроса. Как таковой он используется для поиска, подсчёта, обновления и удаления документов из коллекций. Селектор — это JSON-объект, в простейшем случае это может быть даже `{}`, что означает выборку всех документов (аналогичным образом работает `null`). Если нам нужно выбрать всех единорогов (англ. «unicorns») женского рода, можно воспользоваться селектором `{gender:'f'}`.
 
-Before delving too deeply into selectors, let's set up some data to play with. First, remove what we've put so far in the `unicorns` collection via: `db.unicorns.remove()` (since we aren't supplying a selector, it'll remove all documents). Now, issue the following inserts to get some data we can play with (I suggest you copy and paste this):
+Прежде, чем мы глубоко погрузимся в селекторы, давайте сначала создадим немного данных, с которыми будем экспериментировать. Сперва давайте удалим всё, что до этого вставляли в коллекцию `unicorns` с помощью команды: `db.unicorns.remove({})` (поскольку мы не передали селектора, произойдёт удаление всех документов). Теперь давайте произведём следующие вставки, чтобы получить данные для дальнейших экспериментов (можете скопировать и вставить это в консоль):
 
 	db.unicorns.insert({name: 'Horny', dob: new Date(1992,2,13,7,47), loves: ['carrot','papaya'], weight: 600, gender: 'm', vampires: 63});
 	db.unicorns.insert({name: 'Aurora', dob: new Date(1991, 0, 24, 13, 0), loves: ['carrot', 'grape'], weight: 450, gender: 'f', vampires: 43});
@@ -146,309 +156,309 @@ Before delving too deeply into selectors, let's set up some data to play with. F
 	db.unicorns.insert({name: 'Nimue', dob: new Date(1999, 11, 20, 16, 15), loves: ['grape', 'carrot'], weight: 540, gender: 'f'});
 	db.unicorns.insert({name: 'Dunx', dob: new Date(1976, 6, 18, 18, 18), loves: ['grape', 'watermelon'], weight: 704, gender: 'm', vampires: 165});
 
-Now that we have data, we can master selectors. `{field: value}` is used to find any documents where `field` is equal to `value`. `{field1: value1, field2: value2}` is how we do an `and` statement. The special `$lt`, `$lte`, `$gt`, `$gte` and `$ne` are used for less than, less than or equal, greater than, greater than or equal and not equal operations. For example, to get all male unicorns that weigh more than 700 pounds, we could do:
+Теперь, когда данные созданы, можно приступать к освоению селекторов. `{поле: значение}` используется для поиска всех документов, у которых `поле` равно `значение`. `{поле1: значение1, поле2: значение2}` работает как логическое `И`. Специальные операторы `$lt`, `$lte`, `$gt`, `$gte` и `$ne` используются для выражения операций «меньше», «меньше или равно», «больше», «больше или равно», и «не равно». Например, чтобы получить всех самцов единорога, весящих более 700 фунтов, мы можем написать:
 
 	db.unicorns.find({gender: 'm', weight: {$gt: 700}})
-	//or (not quite the same thing, but for demonstration purposes)
+	//или (что не полностью эквивалентно, но приведено здесь в демонстрационных целях)
 	db.unicorns.find({gender: {$ne: 'f'}, weight: {$gte: 701}})
 
-The `$exists` operator is used for matching the presence or absence of a field, for example:
+Оператор `$exists` используется для проверки наличия или отсутствия поля, например:
 
 	db.unicorns.find({vampires: {$exists: false}})
 
-Should return a single document. If we want to OR rather than AND we use the `$or` operator and assign it to an array of values we want or'd:
+Вернёт единственный документ. Если нужно ИЛИ вместо И, мы можем использовать оператор `$or` и присвоить ему массив значений, например:
 
 	db.unicorns.find({gender: 'f', $or: [{loves: 'apple'}, {loves: 'orange'}, {weight: {$lt: 500}}]})
 
-The above will return all female unicorns which either love apples or oranges or weigh less than 500 pounds.
+Вышеуказанный запрос вернёт всех самок единорогов, которые или любят яблоки, или любят апельсины, или весят менее 500 фунтов.
 
-There's something pretty neat going on in our last example. You might have already noticed, but the `loves` field is an array. MongoDB supports arrays as first class objects. This is an incredibly handy feature. Once you start using it, you wonder how you ever lived without it. What's more interesting is how easy selecting based on an array value is: `{loves: 'watermelon'}` will return any document where `watermelon` is a value of `loves`.
+В нашем последнем примере произошло кое-что интересное. Вы заметили — поле `loves` это массив. MongoDB поддерживает массивы как объекты первого класса. Это потрясающе удобная возможность. Начав это использовать, вы удивитесь, как вы раньше жили без этого. Самое интересное это та простота, с которой делается выборка по значению массива: `{loves: 'watermelon'}` вернёт нам все документы, у которых `watermelon` является одним из значений поля `loves`.
 
-There are more available operators than what we've seen so far. The most flexible being `$where` which lets us supply JavaScript to execute on the server. These are all described in the [Advanced Queries](http://www.mongodb.org/display/DOCS/Advanced+Queries#AdvancedQueries) section of the MongoDB website. What we've covered so far though is the basics you'll need to get started. It's also what you'll end up using most of the time.
+Это ещё не все операторы. Самый гибкий оператор — `$where`, позволяющий нам передавать JavaScript для его выполнения на сервере. Это описано в разделе [Сложные запросы](http://ru.wiki.mongodb.org/display/DOCS/Advanced+Queries) на сайте MongoDB. Мы изучили основы, которые нам нужны для начала работы. Это также то, что вы будете использовать большую часть времени.
 
-We've seen how these selectors can be used with the `find` command. They can also be used with the `remove` command which we've briefly looked at, the `count` command, which we haven't looked at but you can probably figure out, and the `update` command which we'll spend more time with later on.
+Мы видели, как эти селекторы могут быть использованы с командой `find`. Они также могут быть использованы с командой `remove`, которую мы кратко рассмотрели, командой `count`, на которую мы пока не взглянули, но которую вы скорее всего изучите, и командой `update`, с которой в дальнейшем мы проведём большую часть времени.
 
-The `ObjectId` which MongoDB generated for our `_id` field can be selected like so:
+`ObjectId`, сгенерированный MongoDB для поля `_id`, подставляется в селектор следующим образом:
 
 	db.unicorns.find({_id: ObjectId("TheObjectId")})
 
-### In This Chapter ###
-We haven't looked at the `update` command yet, or some of the fancier things we can do with `find`. However, we did get MongoDB up and running, looked briefly at the `insert` and `remove` commands (there isn't much more than what we've seen). We also introduced `find` and saw what MongoDB `selectors` were all about. We've had a good start and laid a solid foundation for things to come. Believe it or not, you actually know most of what there is to know about MongoDB - it really is meant to be quick to learn and easy to use. I strongly urge you to play with your local copy before moving on. Insert different documents, possibly in new collections, and get familiar with different selectors. Use `find`, `count` and `remove`. After a few tries on your own, things that might have seemed awkward at first will hopefully fall into place.
+### В этой главе ###
+Мы пока ещё не рассматривали команду `update` или более интересные вещи, которые можно сделать с помощью `find`. Однако мы подняли MongoDB, кратко изучили команды `insert` и  `remove` (изучив практически всё, что о них можно изучить) . Мы также начали исследовать `find` и узнали что такое селекторы MongoDB. Это неплохо для начала, и основы для дальнейшего изучения заложены. Верите или нет, но вы уже изучили практически всё, что нужно знать о MongoDB — настолько она проста и легка в изучении. Я настоятельно рекомендую вам поэкспериментировать с вашими данными, прежде, чем можно будет двигаться дальше. Вставьте несколько новых документов — возможно в новые коллекции — и поэкспериментируйте с селекторами. Используйте `find`, `count` и `remove`. После нескольких ваших собственных попыток вещи, казавшиеся непонятными, станут на свои места.
 
 \clearpage
 
-## Chapter 2 - Updating ##
-In chapter 1 we introduced three of the four CRUD (create, read, update and delete) operations. This chapter is dedicated to the one we skipped over: `update`. `Update` has a few surprising behaviors, which is why we dedicate a chapter to it.
+## Глава 2 — Обновление ##
+В первой главе мы изучили три из четырёх операций CRUD (create, read, update and delete). Эта глава посвящена четвёртой: `update`. У `update` имеются некоторые особенности, вот почему мы посвящаем этому целую главу.
 
-### Update: Replace Versus $set ###
-In its simplest form, `update` takes 2 arguments: the selector (where) to use and what field to update with. If Roooooodles had gained a bit of weight, we could execute:
+### Обновление данных: замена и $set ###
+В простейшей форме, `update` принимает 2 аргумента: селектор (where) для выборки и то, чем обновить соответствующее поле. Чтобы Roooooodles прибавил в весе, используем следующий запрос:
 
 	db.unicorns.update({name: 'Roooooodles'}, {weight: 590})
 
-(if you've played with your `unicorns` collection and it doesn't have the original data anymore, go ahead and `remove` all documents and re-insert from the code in chapter 1.)
+(Если в ходе экспериментов вы удалили данные из ранее созданной коллекции `unicorns`, сделайте всем документам `remove`, и вставьте их заново с помощью кода из главы 1)
 
-If this was real code, you'd probably update your records by `_id`, but since I don't know what `_id` MongoDB generated for you, we'll stick to `names`.  Now, if we look at the updated record:
+В реальной жизни, конечно, следует обновлять документы, выбирая их по `_id`, однако, поскольку я не знаю какой `_id` MongoDB сгенерировала для вас, будем выбирать по имени — `name`.  Теперь, давайте взглянем на обновленную запись:
 
 	db.unicorns.find({name: 'Roooooodles'})
 
-You should discover `updates` first surprise. No document is found because the second parameter we supply is used to **replace** the original. In other words, the `update` found a document by `name` and replaced the entire document with the new document (the 2nd parameter). This is different than how SQL's `update` command works. In some situations, this is ideal and can be leveraged for some truly dynamic updates. However, when all you want to do is change the value of one, or a few fields, you are best to use MongoDB's `$set` modifier:
+Вот и первый сюрприз, который нам преподнёс `update`. Документ не найден, поскольку второй параметр используется для **полной замены** оригинала. Иными словами, `update` нашёл документ по имени и заменил его целиком на новый документ (свой второй параметр). Вот в чём отличие от SQL-команды `UPDATE`. Иногда это идеальный вариант, который может использоваться для некоторых действительно динамических обновлений. Однако, если вам нужно всего лишь изменить пару полей, лучше всего использовать модификатор `$set`:
 
 	db.unicorns.update({weight: 590}, {$set: {name: 'Roooooodles', dob: new Date(1979, 7, 18, 18, 44), loves: ['apple'], gender: 'm', vampires: 99}})
 
-This'll reset the lost fields. It won't overwrite the new `weight` since we didn't specify it. Now if we execute:
+Это восстановит утерянные ранее поля. Поле `weight` не перезапишется, поскольку мы его не передали в запрос. Теперь, если выполнить:
 
 	db.unicorns.find({name: 'Roooooodles'})
 
-We get the expected result. Therefore, the correct way to have updated the weight in the first place is:
+мы получим ожидаемый результат. Таким образом, в первом примере правильно было бы обновить `weight` следующим образом:
 
 	db.unicorns.update({name: 'Roooooodles'}, {$set: {weight: 590}})
 
-### Update Modifiers ###
-In addition to `$set`, we can leverage other modifiers to do some nifty things. All of these update modifiers work on fields - so your entire document won't be wiped out. For example, the `$inc` modifier is used to increment a field by a certain positive or negative amount. For example, if Pilot was incorrectly awarded a couple vampire kills, we could correct the mistake by executing:
+### Модификаторы обновления ###
+Кроме `$set` можно использовать и другие модификаторы для разных изящных вещей. Все эти модификаторы обновления действуют над полями — так что ваш документ не окажется перезаписан целиком. Например, модификатор `$inc` служит для того, чтобы изменить поле на положительную (увеличить) или отрицательную (уменьшить) величину. Например, если единорог Pilot был ошибочно награждён за убийство пары лишних вампиров, мы можем исправить эту ошибку следующим образом:
 
 	db.unicorns.update({name: 'Pilot'}, {$inc: {vampires: -2}})
 
-If Aurora suddenly developed a sweet tooth, we could add a value to her `loves` field via the `$push` modifier:
+Если Aurora внезапно пристрастилась к сладостям, мы можем добавить соответствующее значение к ее полю `loves` с помощью модификатора `$push`:
 
 	db.unicorns.update({name: 'Aurora'}, {$push: {loves: 'sugar'}})
 
-The [Updating](http://www.mongodb.org/display/DOCS/Updating) section of the MongoDB website has more information on the other available update modifiers.
+Информацию об остальных модификаторах можно найти в разделе [Обновление](http://ru.wiki.mongodb.org/display/DOCS/Updating) на сайте MongoDB.
 
-### Upserts ###
-One of `updates` more pleasant surprises is that it fully supports `upserts`. An `upsert` updates the document if found or inserts it if not. Upserts are handy to have in certain situations and, when you run into one, you'll know it. To enable upserting we set a third parameter to `true`.
+### Обновление/вставка ###
+Один из приятных сюрпризов операции обновления — это возможность обновления/вставки *(`upsert` от `update` — обновить и `insert` — вставить)* Обновление/вставка обновляет документ, если он найден, или создаёт новый — если не найден. Обновление/вставка — полезная вещь в некоторых случаях; когда столкнётесь с подобным, сразу поймёте. Чтобы разрешить вставку при обновлении, установите третий параметр в `true`.
 
-A mundane example is a hit counter for a website. If we wanted to keep an aggregate count in real time, we'd have to see if the record already existed for the page, and based on that decide to run an update or insert. With the third parameter omitted (or set to false), executing the following won't do anything:
+Пример из жизни — счётчик посещений для веб-сайта. Если мы хотим в реальном времени видеть количество посещений страницы, мы должны посмотреть, существует ли запись, и — в зависимости от результата — выполнить `update` либо `insert`. Если опустить (или установить в `false`) третий параметр, следующий пример не сработает:
 
 	db.hits.update({page: 'unicorns'}, {$inc: {hits: 1}});
 	db.hits.find();
 
-However, if we enable upserts, the results are quite different:
+Однако, если разрешить вставку при обновлении, результаты будут иными:
 
 	db.hits.update({page: 'unicorns'}, {$inc: {hits: 1}}, true);
 	db.hits.find();
 
-Since no documents exists with a field `page` equal to `unicorns`, a new document is inserted. If we execute it a second time,the existing document is updated and `hits` is incremented to 2.
+Поскольку документы с полем `page`, равным `unicorns`, не существуют, то будет создан новый документ. Если выполнить это вторично, существующий документ будет обновлён, и поле `hits` увеличится до 2.
 
 	db.hits.update({page: 'unicorns'}, {$inc: {hits: 1}}, true);
 	db.hits.find();
 
-### Multiple Updates ###
-The final surprise `update` has to offer is that, by default, it'll update a single document. So far, for the examples we've looked at, this might seem logical. However, if you executed something like:
+### Множественные обновления ###
+Последний сюрприз метода `update` — это, то что он по умолчанию обновляет лишь один документ. До сих пор это было логично в случае с уже рассмотренными примерами. Однако, если выполнить что-нибудь вроде:
 
 	db.unicorns.update({}, {$set: {vaccinated: true }});
 	db.unicorns.find({vaccinated: true});
 
-You'd likely expect to find all of your precious unicorns to be vaccinated. To get the behavior you desire, a fourth parameter must be set to true:
+, то вы очевидно будете ожидать, что все единороги будут привиты *(`vaccinated`)*. Чтобы это сработало, нужно установить четвертый параметр в `true`:
  
 	db.unicorns.update({}, {$set: {vaccinated: true }}, false, true);
 	db.unicorns.find({vaccinated: true});
 
-### In This Chapter ###
-This chapter concluded our introduction to the basic CRUD operations available against a collection. We looked at `update` in detail and observed three interesting behaviors. First, unlike an SQL update, MongoDB's `update` replaces the actual document. Because of this the `$set` modifier is quite useful. Secondly, `update` supports an intuitive `upsert` which is particularly useful when paired with the `$inc` modifier. Finally, by default, `update` only updates the first found document.
+### В этой главе ###
+Эта глава завершила введение в основные CRUD операции над коллекциями. Мы детально рассмотрели `update` и увидели три его интересных режима работы. Во-первых, в отличие от SQL-команды `UPDATE`, в MongoDB `update` заменяет документ целиком. Из-за этого модификатор `$set` очень полезен. Во-вторых, `update` поддерживает интуитивно простое обновление/вставку, которое особенно полезно с модификатором `$inc`. И, наконец, в-третьих, по умолчанию, `update` обновляет лишь первый найденный документ.
 
-Do remember that we are looking at MongoDB from the point of view of its shell. The driver and library you use could alter these default behaviors or expose a different API. For example, the Ruby driver merges the last two parameters into a single hash: `{:upsert => false, :multi => false}`.
+Помните, что мы рассматриваем MongoDB с точки зрения её консоли. Используемые вами драйверы и библиотеки могут иметь иное поведение и реализовывать иной API. Например, драйвер для Ruby сливает два параметра в один хэш: `{:upsert => false, :multi => false}`.
 
 \clearpage
 
-## Chapter 3 - Mastering Find ##
-Chapter 1 provided a superficial look at the `find` command. There's more to `find` than understanding `selectors` though. We already mentioned that the result from `find` is a `cursor`. We'll now look at exactly what this means in more detail.
+## Глава 3 — Осваиваем Find ##
+В главе 1 мы вкратце рассмотрели команду `find`. Однако, `find` — это не только селекторы. Как уже упоминалось, результатом `find` является курсор. Пришло время рассмотреть это детальнее.
 
-### Field Selection ###
-Before we jump into `cursors`, you should know that `find` takes a second optional parameter. This parameter is the list of fields we want to retrieve. For example, we can get all of the unicorns names by executing:
+### Выбор полей ###
+Прежде чем переходить к курсорам, следует знать, что `find` принимает второй необязательный параметр. Это — список полей, которые мы хотим получить. Например, мы можем получить все имена единорогов следующим запросом:
 
 	db.unicorns.find(null, {name: 1});
 
-By default, the `_id` field is always returned. We can explicitly exclude it by specifying `{name:1, _id: 0}`.
+Поле `_id` по умолчанию возвращается всегда. Мы можем явным способом исключить его, указав `{name:1, _id: 0}`.
 
-Aside from the `_id` field, you cannot mix and match inclusion and exclusion. If you think about it, that actually makes sense. You either want to select or exclude one or more fields explicitly.
+За исключением поля `_id`, нельзя смешивать включения и исключения полей. Задумавшись, можно понять, зачем так сделано. Можно или хотеть включить или хотеть наоборот — исключить определённые поля явным образом.
 
-### Ordering ###
-A few times now I've mentioned that `find` returns a cursor whose execution is delayed until needed. However, what you've no doubt observed from the shell is that `find` executes immediately. This is a behavior of the shell only. We can observe the true behavior of `cursors` by looking at one of the methods we can chain to `find`. The first that we'll look at is `sort`. `sort` works a lot like the field selection from the previous section. We specify the fields we want to sort on, using 1 for ascending and -1 for descending. For example:
+### Сортировка ###
+Я уже несколько раз упомянул, что `find` возвращает курсор, который исполняется отложенно — по мере необходимости. Однако, вы уже без сомнения могли видеть, что `find` исполняется мгновенно. Такое поведение характерно только для консоли. Можно пронаблюдать за истинным поведением курсоров, взглянув на любой из методов, который мы можем присоединить к `find`. Первым из них будет `sort`. Синтаксис `sort` примерно такой же, как у выбора полей, который мы видели в предыдущем разделе. Мы указываем поля, по которым надо сортировать, используя `1` для сортировки по возрастанию и `-1` для сортировки по убыванию. Например:
 
-	//heaviest unicorns first
+	//сортируем по весу — от тяжёлых к лёгким единорогам
 	db.unicorns.find().sort({weight: -1})
 	
-	//by vampire name then vampire kills:
+	//по имени единорога, затем по числу убитых вампиров:
 	db.unicorns.find().sort({name: 1, vampires: -1})
 
-Like with a relational database, MongoDB can use an index for sorting. We'll look at indexes in more detail later on. However, you should know that MongoDB limits the size of your sort without an index. That is, if you try to sort a large result set which can't use an index, you'll get an error. Some people see this as a limitation. In truth, I wish more databases had the capability to refuse to run unoptimized queries. (I won't turn every MongoDB drawback into a positive, but I've seen enough poorly optimized databases that I sincerely wish they had a strict-mode.)
+Подобно реляционной базе данных, MongoDB может использовать индексы для сортировки. Детальнее мы рассмотрим индексы несколько позже. Однако следует знать, что без индекса MongoDB ограничивает размер сортируемых данных. Если вы попытаетесь отсортировать большой объем данных, не используя индекс, вы получите ошибку. Некоторые считают это ограничением. Хотя я думаю, что и другим базам данных не мешало бы запрещать выполнение неоптимальных запросов. (Я не стану превращать каждый недостаток MongoDB в её достоинство, однако я сталкивался с большим числом неоптимальных баз данных, которым очень не хватало подобного режима строгой проверки.)
 
-### Paging ###
-Paging results can be accomplished via the `limit` and `skip` cursor methods. To get the second and third heaviest unicorn, we could do:
+### Разбиение на страницы ###
+Разбиение на страницы может быть осуществлено с помощью методов `limit` и `skip`. Чтобы получить второго и третьего по весу единорога, можно выполнить:
 
 	db.unicorns.find().sort({weight: -1}).limit(2).skip(1)
 
-Using `limit` in conjunction with `sort`, is a good way to avoid running into problems when sorting on non-indexed fields.
+Используя `limit` вместе с `sort` можно избежать проблем с сортировкой по неиндексированным полям.
 
 ### Count ###
-The shell makes it possible to execute a `count` directly on a collection, such as:
+Консоль позволяет выполнить `count` прямо над коллекцией:
 
 	db.unicorns.count({vampires: {$gt: 50}})
 
-In reality, `count` is actually a `cursor` method, the shell simply provides a shortcut. Drivers which don't provide such a shortcut need to be executed like this (which will also work in the shell):
+На практике же `count` — это метод курсора, консоль просто обеспечивает удобное сокращение. С драйверами, не поддерживающим подобного сокращения, нужно писать что-то вроде этого (конечно, и в консоли тоже так можно):
 
 	db.unicorns.find({vampires: {$gt: 50}}).count()
 
-### In This Chapter ###
-Using `find` and `cursors` is a straightforward proposition. There are a few additional commands that we'll either cover in later chapters or which only serve edge cases, but, by now, you should be getting pretty comfortable working in the mongo shell and understanding the fundamentals of MongoDB.
+### В этой главе ####
+Довольно просто пользоваться `find` и курсорами. Есть еще несколько дополнительных команд, которые мы либо рассмотрим позже, либо не рассмотрим вообще (так как они применяются лишь в граничных случаях), но теперь, я думаю, вы должны уже освоиться в работе с консолью `mongo` и пониманием основных принципов MongoDB.
 
 \clearpage
 
-## Chapter 4 - Data Modeling ##
-Let's shift gears and have a more abstract conversation about MongoDB. Explaining a few new terms and some new syntax is a trivial task. Having a conversation about modeling with a new paradigm isn't as easy. The truth is that most of us are still finding out what works and what doesn't when it comes to modeling with these new technologies. It's a conversation we can start having, but ultimately you'll have to practice and learn on real code.
+## Глава 4 — Моделирование данных ##
+Давайте сменим тему и поговорим о более абстрактных концепциях MongoDB. Довольно просто объяснять новые термины и новый синтаксис. Гораздо сложнее говорить о моделировании в терминах новой парадигмы. Смысл в том, что большинство из нас привыкли пробовать любую новую технологию, моделируя реальные задачи. Мы поговорим об этом, но в конечном счете вы должны попрактиковаться и изучить реальный код.
 
-Compared to most NoSQL solutions, document-oriented databases are probably the least different, compared to relational databases, when it comes to modeling. The differences which exist are subtle but that doesn't mean they aren't important. 
+Когда речь заходит о моделировании данных, то документ-ориентированные базы данных не настолько сильно отличаются от реляционных, как другие NoSQL-решения. Существующие различия не столь велики, однако это не уменьшает их важности. 
 
-### No Joins ###
-The first and most fundamental difference that you'll need to get comfortable with is MongoDB's lack of joins. I don't know the specific reason why some type of join syntax isn't supported in MongoDB, but I do know that joins are generally seen as non-scalable. That is, once you start to horizontally split your data, you end up performing your joins on the client (the application server) anyways. Regardless of the reasons, the fact remains that data *is* relational, and MongoDB doesn't support joins.
+### Отсутствие JOIN-ов  ###
+Первое и самое фундаментальное различие, с которым вам надо свыкнуться, это отсутствие у MongoDB аналога конструкции JOIN. Неизвестно почему именно MongoDB не поддерживает JOIN-синтаксиса, однако точно можно сказать, что JOIN-ы не масштабируемы. Это значит, что когда вы начнёте разделять данные горизонтально, вам всё равно придётся выполнять JOIN-ы на клиенте (которым является сервер приложений). Независимо от причин, факт остаётся фактом: данные реляционны по своей природе, но MongoDB не поддерживает JOIN-ов.
 
-Without knowing anything else, to live in a join-less world, we have to do joins ourselves within our application's code. Essentially we need to issue a second query to `find` the relevant data. Setting our data up isn't any different than declaring a foreign key in a relational database. Let's give a little less focus to our beautiful `unicorns` and a bit more time to our `employees`. The first thing we'll do is create an employee (I'm providing an explicit `_id` so that we can build coherent examples)
+Мы должны делать JOIN-ы вручную, в коде своего приложения. По существу, мы должны делать второй запрос, чтобы найти связанные данные. Создание данных тут не сильно отличается от создания внешних ключей в реляционных базах. Теперь давайте от единорогов (`unicorns`) перейдём к сотрудникам (`employees`). Первым делом создадим сотрудника (я явным образом привожу здесь `_id`, чтобы наши примеры выполнялись как задумано)
 
 	db.employees.insert({_id: ObjectId("4d85c7039ab0fd70a117d730"), name: 'Leto'})
 
-Now let's add a couple employees and set their manager as `Leto`:
+Теперь добавим пару сотрудников и сделаем `Leto` их менеджером:
 
 	db.employees.insert({_id: ObjectId("4d85c7039ab0fd70a117d731"), name: 'Duncan', manager: ObjectId("4d85c7039ab0fd70a117d730")});
 	db.employees.insert({_id: ObjectId("4d85c7039ab0fd70a117d732"), name: 'Moneo', manager: ObjectId("4d85c7039ab0fd70a117d730")});
 
 
-(It's worth repeating that the `_id` can be any unique value. Since you'd likely use an `ObjectId` in real life, we'll use them here as well.)
+(стоит повторить, что `_id` может быть любым уникальным значением. Поскольку в жизни вы скорее всего станете использовать `ObjectId`, мы также здесь используем его.)
 
-Of course, to find all of Leto's employees, one simply executes:
+Чтобы найти всех сотрудников, принадлежащих Leto, выполним просто:
 
 	db.employees.find({manager: ObjectId("4d85c7039ab0fd70a117d730")})
 
-There's nothing magical here. In the worst cases, most of the time, the lack of join will merely require an extra query (likely indexed).
+Никакой магии. В худших случаях отсутствие JOIN-ов чаще всего потребует дополнительного запроса (как правило индексированного).
 
-#### Arrays and Embedded Documents ####
-Just because MongoDB doesn't have joins doesn't mean it doesn't have a few tricks up its sleeve. Remember when we quickly saw that MongoDB supports arrays as first class objects of a document? It turns out that this is incredibly handy when dealing with many-to-one or many-to-many relationships. As a simple example, if an employee could have two managers, we could simply store these in an array:
+#### Массивы и вложенные документы ####
+Но тот факт, что у MongoDB нет JOIN-ов ещё не означает, что у неё не припасено пару козырей в рукаве. Помните, как мы вкратце поведали ранее о поддержке в MongoDB массивов, как объектов первого класса? Оказывается, что она чертовски удобна, когда требуется смоделировать отношения «один-ко-многим» или «многие-ко-многим». Например, если у сотрудника есть несколько менеджеров, мы просто можем сохранить их в виде массива:
 
 	db.employees.insert({_id: ObjectId("4d85c7039ab0fd70a117d733"), name: 'Siona', manager: [ObjectId("4d85c7039ab0fd70a117d730"), ObjectId("4d85c7039ab0fd70a117d732")] })
 
-Of particular interest is that, for some documents, `manager` can be a scalar value, while for others it can be an array. Our original `find` query will work for both:
+А самое интересное, что в одних документах `manager` можно сделать скалярным значением, а в других — массивом. А наш предыдущий запрос `find` сработает в обоих случаях:
 
 	db.employees.find({manager: ObjectId("4d85c7039ab0fd70a117d730")})
 
-You'll quickly find that arrays of values are much more convenient to deal with than many-to-many join-tables.
+Вскоре вы убедитесь, что массивы значений намного удобнее в использовании, нежели таблицы связи «многие-ко-многим».
 
-Besides arrays, MongoDB also supports embedded documents. Go ahead and try inserting a document with a nested document, such as:
+Кроме массивов MongoDB также поддерживает вложенные документы. Попробуйте вставить документ со вложенным документом, например:
 
 	db.employees.insert({_id: ObjectId("4d85c7039ab0fd70a117d734"), name: 'Ghanima', family: {mother: 'Chani', father: 'Paul', brother: ObjectId("4d85c7039ab0fd70a117d730")}})
 
-In case you are wondering, embedded documents can be queried using a dot-notation:
+Вложенные документы можно запрашивать с помощью точечной нотации:
 
 	db.employees.find({'family.mother': 'Chani'})
 
-We'll briefly talk about where embedded documents fit and how you should use them.
+Мы кратко обсудим, где могут использоваться вложенные документы, и как их следует применять.
 
 #### DBRef ####
-MongoDB supports something known as `DBRef` which is a convention many drivers support. When a driver encounters a `DBRef` it can automatically pull the referenced document. A `DBRef` includes the collection and id of the referenced document. It generally serves a pretty specific purpose: when documents from the same collection might reference documents from a different collection from each other. That is, the `DBRef` for document1 might point to a document in `managers` whereas the `DBRef` for document2 might point to a document in `employees`.
+MongoDB поддерживает понятие под названием `DBRef`, которое является соглашением, принятым во многих драйверах. Когда драйвер видит `DBRef`, он может автоматически получить связанный документ. `DBRef` включает в себя коллекцию и `_id` документа, на который он ссылается. Это означает следующее — документы из одной и той же коллекции могут ссылаться на другие документы из различных коллекций. То есть документ 1 может ссылаться на документ из коллекции `managers`, в то же время документ 2 может ссылаться на документ из коллекции `employees`.
 
 
-#### Denormalization ####
-Yet another alternative to using joins is to denormalize your data. Historically, denormalization was reserved for performance-sensitive code, or when data should be snapshotted (like in an audit log). However, with the ever-growing popularity of NoSQL, many of which don't have joins, denormalization as part of normal modeling is becoming increasingly common. This doesn't mean you should duplicate every piece of information in every document. However, rather than letting fear of duplicate data drive your design decisions, consider modeling your data based on what information belongs to what document.
+#### Денормализация ####
+Ещё одна альтернатива использованию JOIN-ов — денормализация. Исторически денормализация использовалась для оптимизации производительности, или когда с данных (например, журнала аудита) необходимо было иметь возможность делать снимок. Однако с быстрым ростом NoSQL решений, многие из которых лишены JOIN-ов, денормализация стала в порядке вещей. Это не означает, что нужно дублировать всё подряд в любых документах. Можно остерегаться дублирования данных, а можно соответствующим образом продумать архитектуру своей базы.
 
-For example, say you are writing a forum application. The traditional way to associate a specific `user` with a `post` is via a `userid` column within `posts`. With such a model, you can't display `posts` without retrieving (joining to) `users`. A possible alternative is simply to store the `name` as well as the `userid` with each `post`. You could even do so with an embedded document, like `user: {id: ObjectId('Something'), name: 'Leto'}`. Yes, if you let users change their name, you'll have to update each document (which is 1 extra query). 
+К примеру, мы разрабатываем форум. Традиционный путь ассоциировать пользователя с его постом — это колонка `userid` в таблице `posts`. с такой моделью нельзя отобразить список постов без дополнительного извлечения данных (JOIN) из таблицы пользователей. Возможное решение — хранить имя пользователя (`name`) вместе с `userid` для каждого поста. Можно также вставлять небольшой встроенный документ, например, `user: {id: ObjectId('Something'), name: 'Leto'}`. Да, если позволить пользователям изменять своё имя, нам придётся обновлять каждый документ (пост) — это один лишний запрос. 
 
-Adjusting to this kind of approach won't come easy to some. In a lot of cases it won't even make sense to do this. Don't be afraid to experiment with this approach though. It's not only suitable in some circumstances, but it can also be the right way to do it.
+Не всем легко приспособиться к такому подходу. Во многих случаях даже не имеет смысла этого делать. Всё же не бойтесь экспериментировать с таким подходом. Иногда это бывает полезным — чуть ли не единственным правильным — решением.
 
-#### Which Should You Choose? ####
-Arrays of ids are always a useful strategy when dealing with one-to-many or many-to-many scenarios. It's probably safe to say that `DBRef` aren't use very often, though you can certainly experiment and play with them. That generally leaves new developers unsure about using embedded documents versus doing manual referencing.
+#### Что выбрать? ####
+Также полезной стратегией в случаях отношения «один-ко-многим» или «многие-ко-многим» является массив идентификаторов. Бытует мнение, что `DBRef` используется не так часто, но конечно вы можете поэкспериментировать с ним. Обычно начинающие разработчики не уверены что подойдёт им лучше — вложенные документы или `DBRef`.
 
-First, you should know that an individual document is currently limited to 4 megabytes in size. Knowing that documents have a size limit, though quite generous, gives you some idea of how they are intended to be used. At this point, it seems like most developers lean heavily on manual references for most of their relationships. Embedded documents are frequently leveraged, but mostly for small pieces of data which we want to always pull with the parent document. A real world example I've used is to store an `accounts` document with each user, something like:
+Во-первых, следует помнить, что одиночный документ ограничен в размере до 4 мегабайт. Факт ограничения (пусть и такого щедрого) размера документа даёт понимание о том, как их следует использовать. Теперь понятно, что большинство разработчиков склоняются к использованию заданных вручную ссылок. Вложенные документы используются часто, но для небольших объёмов данных, если их желательно всегда извлекать вместе с родительским документом. Примером из жизни может быть документ `accounts`, сохраняемый с каждым пользователем, например:
 
 	db.users.insert({name: 'leto', email: 'leto@dune.gov', account: {allowed_gholas: 5, spice_ration: 10}})
 
-That doesn't mean you should underestimate the power of embedded documents or write them off as something of minor utility. Having your data model map directly to your objects makes things a lot simpler and often does remove the need to join. This is especially true when you consider that MongoDB lets you query and index fields of an embedded document. 
+Это не означает, что можно недооценивать мощь вложенных документов, либо отбрасывать их, как мелкую, второстепенную утилиту. Намного проще живётся, когда структура ваших данных напрямую отображает структуру ваших объектов. Особенно ценным является то, что MongoDB позволяет запрашивать и индексировать поля вложенных документов. 
 
-### Few or Many Collections ###
-Given that collections don't enforce any schema, it's entirely possible to build a system using a single collection with a mismatch of documents.  From what I've seen, most MongoDB systems are laid out similarly to what you'd find in a relational system. In other words, if it would be a table in a relational database, it'll likely be a collection in MongoDB (many-to-many join tables being an important exception).
+### Мало или много коллекций ###
+Учитывая то, что коллекции не привязывают нас к конкретной схеме, вполне возможно обойтись одной коллекцией, имеющей документы разной структуры.  Построенные на MongoDB системы, с которыми мне приходилось сталкиваться, как правило, были похожи на реляционные базы данных. Другими словами, то, что являлось бы таблицей в реляционной базе данных, скорее всего реализуется, как коллекция в MongoDB (таблицы-связки «многие-ко-многим» являются важным исключением).
 
-The conversation gets even more interesting when you consider embedded documents. The example that frequently comes up is a blog. Should you have a `posts` collection and a `comments` collection, or should each `post` have an array of `comments` embedded within it. Setting aside the 4MB limit for the time being (all of Hamlet is less than 200KB, just how popular is your blog?), most developers still prefer to separate things out. It's simply cleaner and more explicit.
+Дело принимает интересный оборот, если воспользоваться вложенными документами. Пример, который первым делом приходит на ум, это блог. Допустим, есть коллекция `posts` и коллекция `comments`, и каждый пост должен иметь вложенный массив комментариев. Если оставить в стороне ограничение 4Мб («Гамлет» на английском едва дотягивает до 200 килобайт, насколько же должен быть популярным ваш блог?), большинство разработчиков предпочитают разделять сущности. Так понятнее и яснее.
 
-There's no hard rule (well, aside from 4MB). Play with different approaches and you'll get a sense of what does and does not feel right. 
+Нет какого бы то ни было строгого правила (ну, кроме 4MB). Поэкспериментируйте с различными подходами, и вам станет ясно, что будет правильнее, а что — нет.
 
-### In This Chapter ###
-Our goal in this chapter was to provide some helpful guidelines for modeling your data in MongoDB. A starting point if you will. Modeling in a document-oriented system is different, but not too different than a relational world. You have a bit more flexibility and one constraint, but for a new system, things tend to fit quite nicely. The only way you can go wrong is by not trying.
+### В этой главе ###
+Целью этой главы было представить некоторые полезные рекомендации для моделирования данных в MongoDB. Если угодно, стартовую точку. Моделирование в документ-ориентированных системах отличается от такового в реляционных, но не так уж сильно. Здесь намного больше гибкости, но есть одно ограничение, хотя для разработки новой системы это подходит, как правило, неплохо. Не выходит только у тех, кто не пробует.
 
 \clearpage
 
-## Chapter 5 - When To Use MongoDB ##
-By now you should have a good enough understanding of MongoDB to have a feel for where and how it might fit into your existing system. There are enough new and competing storage technologies that it's easy to get overwhelmed by all of the choices. 
+## Глава 5 — Когда использовать MongoDB ##
+К этому моменту у вас должно сформироваться понимание MongoDB, достаточное для того, чтобы понять, где она может вписаться в вашу существующую систему. Есть так много новых, конкурирующих технологий хранения данных, что легко растеряться в выборе, какую же из них использовать. 
 
-For me, the most important lesson, which has nothing to do with MongoDB, is that you no longer have to rely on a single solution for dealing with your data. No doubt, a single solution has obvious advantages and for a lot projects, possibly even most, a single solution is the sensible approach. The idea isn't that you must use different technologies, but rather that you can. Only you know whether the benefits of introducing a new solution outweigh the costs.
+Для меня самым большим уроком, не имеющим, впрочем, ничего общего с MongoDB, стало то, что не обязательно полагаться на единственное решение для работы с данными. Естественно, единственное решение имеет очевидные преимущества, и для многих — если не для большинства — проектов таковое является разумным подходом. Смысл не в том, что вы *должны*, а скорее в том, что вы *можете* использовать различные технологии. Только вы знаете, перевешивают ли преимущества от внедрения нового решения возможные издержки.
 
-With that said, I'm hopeful that what you've seen so far has made you see MongoDB as a general solution. It's been mentioned a couple times that document-oriented databases share a lot in common with relational databases. Therefore, rather than tiptoeing around it, let's simply state that MongoDB should be seen as a direct alternative to relational databases. Where one might see Lucene as enhancing a relational database with full text indexing, or Redis as a persistent key-value store, MongoDB is a central repository for your data.
+С учётом сказанного, я надеюсь, что виденное вами ранее позволило вам расценивать MongoDB в качестве общего решения. Пару раз упоминалось, что документ-ориентированные базы данных имеют много общего с реляционными. Таким образом, чтобы не ходить вокруг да около, позвольте просто заявить, что MongoDB может рассматриваться как прямая альтернатива реляционным базам данных. В то время, как Lucene можно рассматривать, как расширение реляционных баз полнотекстовым индексом, а Redis — как персистентное хранилище ключ-значение, MongoDB — это центральный репозиторий для ваших данных.
 
-Notice that I didn't call MongoDB a *replacement* for relational databases, but rather an *alternative*. It's a tool that can do what a lot of other tools can do. Some of it MongoDB does better, some of it MongoDB does worse. Let's dissect things a little further.
+Заметьте, я не называю MongoDB *заменой* реляционных баз, это скорее *альтернатива*. Это инструмент, который может делать то же, что могут делать множество прочих. Кое-что — лучше, кое-что — нет. Проанализируем это чуть позже.
 
-### Schema-less ###
-An oft-touted benefit of document-oriented database is that they are schema-less. This makes them much more flexible than traditional database tables. I agree that schema-less is a nice feature, but not for the main reason most people mention.
+### Бесструктурность ###
+Часто рекламируемым преимуществом документ-ориентированных баз данных является то, что они бесструктурны. Это делает их гораздо более гибкими, нежели традиционные реляционные базы данных. Я согласен, что бесструктурность хороша, но только не в качестве упоминаемого многими главного преимущества.
 
-People talk about schema-less as though you'll suddenly start storing a crazy mismatch of data. There are domains and data sets which can really be a pain to model using relational databases, but I see those as edge cases. Schema-less is cool, but most of your data is going to be highly structured. It's true that having an occasional mismatch can be handy, especially when you introduce new features, but in reality it's nothing a nullable column probably wouldn't solve just as well.
+Часто бесструктурность видится как хаотичная организация данных. Есть домены и наборы данных, которые и правда очень трудно смоделировать в терминах обычной реляционной базы данных, но я рассматриваю их скорее как граничные случаи. Бесструктурность заманчива, однако большая часть данных должна быть хорошо структурированной. Конечно, иногда это может быть удобно, особенно для добавления нового функционала, однако на деле это можно решить и добавлениями новых необязательных полей.
 
-For me, the real benefit of schema-less design is the lack of setup and the reduced friction with OOP. This is particularly true when you're working with a static language. I've worked with MongoDB in both C# and Ruby, and the difference is striking. Ruby's dynamism and its popular ActiveRecord implementations already reduce much of the object-relational impedance mismatch. That isn't to say MongoDB isn't a good match for Ruby, it really is. Rather, I think most Ruby developers would see MongoDB as an incremental improvement, whereas C# or Java developers would see a fundamental shift in how they interact with their data. 
+Для меня настоящее преимущество бесструктурной архитектуры — это отсутствие установки и сведённые к минимуму расхождения с ООП. Особенно это чувствуется при работе со статически типизированными языками. Я работал с MongoDB как в C#, так и в Ruby — разница бросается в глаза. Динамизм Ruby и популярная реализация ActiveRecord уже ощутимо сокращают расхождение  объектной и реляционной моделей *(object-relational impedance mismatch)*. Это не означает, что MongoDB — плохое решение для Ruby, напротив. Скорее я думаю, что большинство Ruby-разработчиков видят MongoDB как небольшое улучшение, в то время как разработчики, пишущие на C# или Java, видят пропасть разделяющую MongoDB и их подход к манипулированию данными. 
 
-Think about it from the perspective of a driver developer. You want to save an object? Serialize it to JSON (technically BSON, but close enough) and send it to MongoDB. There is no property mapping or type mapping. This straightforwardness definitely flows to you, the end developer.
+Подумайте об этом с точки зрения разработчика драйверов. Вам надо сохранить объект? Сериализируйте его в JSON (на самом деле в BSON, но это почти одно и то же) и отправьте в MongoDB. Нет никакого маппинга свойств или типов. Эта простота определённо должна подходить вам, как конечному разработчику.
 
-### Writes ###
-One area where MongoDB can fit a specialized role is in logging. There are two aspects of MongoDB which make writes quite fast. First, you can send a write command and have it return immediately without waiting for it to actually write. Secondly, with the introduction of journaling in 1.8, and enhancements made in 2.0, you can control the write behavior with respect to data durability. These settings, in addition to specifying how many servers should get your data before being considered successful, are configurable per-write, giving you a great level of control over write performance and data durability.
+### Запись ###
+Область, для которой MongoDB особенно подходит, — это логгирование. Есть два аспекта MongoDB, которые делают запись быстрой. Во-первых, можно отправить команду записи и продолжить работу, не ожидая её возврата и действительной свершившейся записи. Во-вторых, с появлением в версии 1.8 журналирования и некоторыми улучшениями, сделанными в версии 2.0, стало возможно контролировать поведение записи с учётом целостности данных. Эти параметры, в дополнение к тому, сколько серверов должны получить ваши данные, прежде чем запись будет считаться успешной, настраиваются на уровне отдельной записи, что даёт вам большую степень контроля над выполнением записи данных и их долговечностью.
 
-In addition to these performance factors, log data is one of those data sets which can often take advantage of schema-less collections. Finally, MongoDB has something called a [capped collection](http://www.mongodb.org/display/DOCS/Capped+Collections). So far, all of the implicitly created collections we've created are just normal collections. We can create a capped collection by using the `db.createCollection` command and flagging it as capped:
+Кроме указанных факторов производительности, при логгировании как раз может оказаться полезной гибкая структура данных. Наконец, в MongoDB есть такое понятие, как [ограниченная коллекция](http://ru.wiki.mongodb.org/display/DOCS/Capped+Collections) *(capped collection)*. До сих пор мы создавали обыкновенные коллекции. Мы можем создать ограниченную коллекцию с помощью команды `db.createCollection`, включив флаг `capped`:
 
-	//limit our capped collection to 1 megabyte
+	//ограничиваем размер коллекции до 1 мегабайта
 	db.createCollection('logs', {capped: true, size: 1048576})
 
-When our capped collection reaches its 1MB limit, old documents are automatically purged. A limit on the number of documents, rather than the size, can be set using `max`. Capped collections have some interesting properties. For example, you can update a document but it can't grow in size. Also, the insertion order is preserved, so you don't need to add an extra index to get proper time-based sorting.
+Когда наша ограниченная коллекция достигнет размера в 1 мегабайт, старые документы начнут автоматически удаляться. Можно также задать не размер коллекции, а максимальное количество документов, с помощью опции `max`. У ограниченных коллекций есть ряд интересных свойств. Например, можно изменить документ, но он не может вырасти в размере. Также сохраняется порядок вставки, так что не нужно добавлять дополнительное поле для хронологической сортировки.
 
-This is a good place to point out that if you want to know whether your write encountered any errors (as opposed to the default fire-and-forget), you simply issue a follow-up command: `db.getLastError()`. Most drivers encapsulate this as a *safe write*, say by specifying `{:safe => true}` as a second parameter to `insert`.
+Также стоит заметить, что если нужно выяснить, вызвала ли ваша запись какие-либо ошибки (как, например, в уже упомянутом случае, когда мы не дожидаемся её завершения), можно просто выполнить следующую команду: `db.getLastError()`. Большинство драйверов инкапсулируют эту функцию, как *безопасную запись*, например, можно указать `{:safe => true}` вторым параметром метода `insert`.
 
-### Durability ###
-Prior to version 1.8, MongoDB didn't have single-server durability. That is, a server crash would likely result in lost data. The solution had always been to run MongoDB in a multi-server setup (MongoDB supports replication). One of the major features added to 1.8 was journaling. To enable it add a new line with `journal=true` to the `mongodb.config` file we created when we first setup MongoDB (and restart your server if you want it enabled right away). You probably want journaling enabled (it'll be a default in a future release). Although, in some circumstances the extra throughput you get from disabling journaling might be a risk you are willing to take. (It's worth pointing out that some types of applications can easily afford to lose data).
+### Устойчивость ###
+MongoDB до версии 1.8 не обеспечивала устойчивости данных на одном сервере. Так, отказ сервера мог привести к потере данных. Решение всегда состояло в работе MongoDB на нескольких серверах (MongoDB поддерживает репликацию). Одной из самых важных функций, добавленных в MongoDB 1.8, стало журналирование. Чтобы включить его, добавьте `journal=true` в файл `mongodb.config`, созданный нами при первой настройке MongoDB (и перезапустите сервер, чтобы изменения вступили в силу). Скорее всего, журналирование вам понадобится (в следующих релизах по умолчанию оно будет включено). Несмотря на некоторое увеличение производительности, которое может быть достигнуто при отключении журналирования, возможен определенный риск. (С другой стороны, бывают приложения, которые допускают потерю некоторых данных).
 
-Durability is only mentioned here because a lot has been made around MongoDB's lack of single-server durability. This'll likely show up in Google searches for some time to come. Information you find about this missing feature is simply out of date.
+Устойчивость данных упоминается здесь потому, что много сил было затрачено для того, чтобы добиться её в пределах одного сервера. Вы рано или поздно найдёте в Google упоминания о ненадёжности Mongo как хранилища. Однако эта информация уже устарела.
 
-### Full Text Search ###
-True full text search capability is something that'll hopefully come to MongoDB in a future release. With its support for arrays, basic full text search is pretty easy to implement. For something more powerful, you'll need to rely on a solution such as Lucene/Solr. Of course, this is also true of many relational databases.
+### Полнотекстовый поиск ###
+В будущих релизах, надеюсь, полнотекстовый поиск придёт в MongoDB. С поддержкой для массивов базовый полнотекстовый поиск будет довольно просто применять. Для мощных приложений скорее всего понадобится использовать нечто вроде Lucene или Solr. Конечно также это справедливо и для реляционных баз данных.
 
-### Transactions ###
-MongoDB doesn't have transactions. It has two alternatives, one which is great but with limited use, and the other that is a cumbersome but flexible. 
+### Транзакции ###
+MongoDB не поддерживает транзакций. Есть две альтернативы: одна — замечательная, но ограниченная в использовании, а другая — громоздкая, но гибкая.
 
-The first is its many atomic operations. These are great, so long as they actually address your problem. We already saw some of the simpler ones, like `$inc` and `$set`. There are also commands like `findAndModify` which can update or delete a document and return it atomically.
+Первая альтернатива — это множество атомарных операций. Они прекрасны до тех пор, пока решают вашу проблему. Мы уже видели некоторые из них, например, `$inc` и `$set`. Также существуют команды вроде `findAndModify` которые могут обновлять или удалять документ и автоматически его возвращать.
 
-The second, when atomic operations aren't enough, is to fall back to a two-phase commit. A two-phase commit is to transactions what manual dereferencing is to joins. It's a storage-agnostic solution that you do in code.  Two-phase commits are actually quite popular in the relational world as a way to implement transactions across multiple databases. The MongoDB website [has an example](http://www.mongodb.org/display/DOCS/two-phase+commit) illustrating the most common scenario (a transfer of funds). The general idea is that you store the state of the transaction within the actual document being updated and go through the init-pending-commit/rollback steps manually. 
+Вторая альтернатива — когда атомарных операций не хватает — это двухфазный коммит. Двухфазный коммит по сравнению с транзакциями — это примерно то же самое, что ручное разруливание запросов по сравнению с JOIN-ами. Это независимое от хранилища решение, которое вы осуществляете в коде.  Также двухфазный коммит достаточно распространён в реляционном мире, когда нужно обеспечить транзакции в пределах нескольких баз данных. На сайте MongoDB есть [пример](http://ru.wiki.mongodb.org/display/DOCS/two-phase+commit) иллюстрирующий наиболее распространённый сценарий (перевод денежных средств). Общая идея состоит в том, что вы храните состояние транзакции внутри обновляющегося документа и проходите шаги init-pending-commit/rollback вручную. 
 
-MongoDB's support for nested documents and schema-less design makes two-phase commits slightly less painful, but it still isn't a great process, especially when you are just getting started with it. 
+Поддержка вложенных документов и бесструктурная архитектура MongoDB делают двухфазные коммиты не такими уж страшными, но всё равно это сложный процесс, особенно для тех, кто впервые с этим сталкивается. 
 
-### Data Processing ###
-MongoDB relies on MapReduce for most data processing jobs. It has some [basic aggregation](http://www.mongodb.org/display/DOCS/Aggregation) capabilities, but for anything serious, you'll want to use MapReduce. In the next chapter we'll look at MapReduce in detail. For now you can think of it as a very powerful and different way to `group by` (which is an understatement). One of MapReduce's strengths is that it can be parallelized for working with large sets of data. However, MongoDB's implementation relies on JavaScript which is single-threaded. The point? For processing of large data, you'll likely need to rely on something else, such as Hadoop. Thankfully, since the two systems really do complement each other, there's a [MongoDB adapter for Hadoop](https://github.com/mongodb/mongo-hadoop).
+### Обработка данных ###
+Для большинства задач обработки данных MongoDB использует MapReduce. Есть, конечно, некоторые [базовые агрегирующие функции](http://ru.wiki.mongodb.org/display/DOCS/Aggregation), но для чего-либо серьёзного вам понадобится MapReduce. В следующей главе мы рассмотрим MapReduce более детально. Сейчас можете считать его очень мощным и альтернативным вариантом `group by` (что, впрочем, будет преуменьшением его возможностей). Одно из преимуществ MapReduce в том, что для работы с большими объёмами данных он может выполняться параллельно. Однако реализация MongoDB основана на JavaScript, который сам по себе однопоточен. Что из этого следует? Для обработки больших данных вам, скорее всего, придётся полагаться на что-то другое, например, на Hadoop. К счастью, эти две системы настолько дополняют друг друга, что существует [MongoDB адаптер для Hadoop](https://github.com/mongodb/mongo-hadoop).
 
-Of course, parallelizing data processing isn't something relational databases excel at either. There are plans for future versions of MongoDB to be better at handling very large sets of data.
+Конечно, распараллеливание обработки данных не является однозначным предметом превосходства реляционных баз данных. В будущих релизах MongoDB планируется улучшить обработку огромных объёмов данных.
 
-### Geospatial ###
-A particularly powerful feature of MongoDB is its support for geospatial indexes. This allows you to store x and y coordinates within documents and then find documents that are `$near` a set of coordinates or `$within` a box or circle. This is a feature best explained via some visual aids, so I invite you to try the [5 minute geospatial interactive tutorial](http://mongly.com/geo/index), if you want to learn more.
+### Геопространственные данные ###
+Особенно мощной функцией MongoDB является её поддержка геопространственных индексов. Это позволяет сохранять x- и y-координаты у документов и затем находить документы вблизи (`$near`) определённых координат, или внутри (`$within`) прямоугольника либо окружности. Это легче понять визуально, поэтому я советую посмотреть [пятиминутный практикум по геопространственным функциям MongoDB](http://tutorial.mongly.com/geo/index), если хотите углубить свои знания.
 
-### Tools and Maturity ###
-You probably already know the answer to this, but MongoDB is obviously younger than most relational database systems. This is absolutely something you should consider. How much a factor it plays depends on what you are doing and how you are doing it. Nevertheless, an honest assessment simply can't ignore the fact that MongoDB is younger and the available tooling around isn't great (although the tooling around a lot of very mature relational databases is pretty horrible too!). As an example, the lack of support for base-10 floating point numbers will obviously be a concern (though not necessarily a show-stopper) for systems dealing with money.
+### Инструментарий и зрелость ###
+Вы уже, наверное, знаете — MongoDB значительно младше большинства реляционных баз данных. Это обязательно нужно учитывать. Насколько большую роль это играет — зависит от ваших задач и их реализации. Нельзя игнорировать тот факт, что MongoDB — молодая технология, и доступный инструментарий ещё не очень разнообразен (впрочем, инструментарий зрелых реляционных баз данных бывает подчас просто ужасен). Например, отсутствие поддержки десятичных чисел с плавающей запятой, очевидно, будет проблемой (хотя и не обязательно непреодолимой) для систем, имеющих дело с деньгами.
 
-On the positive side, drivers exist for a great many languages, the protocol is modern and simple, and development is happening at blinding speeds. MongoDB is in production at enough companies that concerns about maturity, while valid, are quickly becoming a thing of the past.
+Есть и положительные стороны: для большинства языков написаны хорошие драйверы, протокол — современный и простой, разработка движется довольно быстро. MongoDB используется на рабочих серверах у многих компаний, так что волнения о зрелости технологии скоро уйдут в историю.
 
-### In This Chapter ###
-The message from this chapter is that MongoDB, in most cases, can replace a relational database. It's much simpler and straightforward; it's faster and generally imposes fewer restrictions on application developers. The lack of transactions can be a legitimate and serious concern. However, when people ask *where does MongoDB sit with respect to the new data storage landscape?* the answer is simple: **right in the middle**.
+### В этой главе ###
+Идея этой главы в том, что MongoDB в большинстве случаев способна стать заменой реляционной базе данных. Она намного проще и понятнее; быстрее работает и имеет меньше ограничений для разработчиков приложений. Отсутствие транзакций может вызывать серьёзную и правомочную озабоченность. Однако, когда спрашивают *какое место занимает MongoDB в экосистеме современных механизмов хранения?*, ответ прост: **строго посередине**.
 
 \clearpage
 
-## Chapter 6 - MapReduce ##
-MapReduce is an approach to data processing which has two significant benefits over more traditional solutions. The first, and main, reason it was development is performance. In theory, MapReduce can be parallelized, allowing very large sets of data to be processed across many cores/CPUs/machines. As we just mentioned, this isn't something MongoDB is currently able to take advantage of. The second benefit of MapReduce is that you get to write real code to do your processing. Compared to what you'd be able to do with SQL, MapReduce code is infinitely richer and lets you push the envelope further before you need to use a more specialized solution.
+## Глава 6 — MapReduce ##
+MapReduce — это подход к обработке данных, который имеет два серьёзных преимущества по сравнению с традиционными решениями. Первое и самое главное преимущество — это производительность. Теоретически MapReduce может быть распараллелен, что позволяет обрабатывать огромные массивы данных на множестве ядер/процессоров/машин. Как уже упоминалось, это пока не является преимуществом MongoDB. Вторым преимуществом MapReduce является возможность описывать обработку данных нормальным кодом. По сравнению с тем, что можно сделать с помощью SQL, возможности кода внутри MapReduce намного богаче и позволяют расширить рамки возможного даже без использования специализированных решений.
 
-MapReduce is a pattern that has grown in popularity, and you can make use of it almost anywhere; C#, Ruby, Java, Python and so on all have implementations. I want to warn you that at first this'll seem very different and complicated. Don't get frustrated, take your time and play with it yourself. This is worth understanding whether you are using MongoDB or not.
+MapReduce — это стремительно приобретающий популярность шаблон, который уже можно использовать почти везде; реализации уже имеются в C#, Ruby, Java, Python. Должен предупредить, что на первый взгляд он может показаться очень непривычным и сложным. Не расстраивайтесь, не торопитесь и поэкспериментируйте с ним самостоятельно. Это стоит того — не важно, используете вы MongoDB или нет.
 
-### A Mix of Theory and Practice ###
-MapReduce is a two-step process. First you map and then you reduce. The mapping step transforms the inputted documents and emits a key=>value pair (the key and/or value can be complex). The reduce gets a key and the array of values emitted for that key and produces the final result. We'll look at each step, and the output of each step.
+### Теория и практика ###
+MapReduce — процесс двухступенчатый. Сначала делается map *(отображение)*, затем — reduce *(свёртка)*. На этапе отображения входные документы трансформируются *(map)* и порождают *(emit)* пары ключ=>значение (как ключ, так и значение могут быть составными). При свёртке *(reduce)* на входе получается ключ и массив значений, порождённых для этого ключа, а на выходе получается финальный результат. Посмотрим на оба этапа и на их выходные данные.
 
-The example that we'll be using is to generate a report of the number of hits, per day, we get on a resource (say a webpage). This is the *hello world* of MapReduce. For our purposes, we'll rely on a `hits` collection with two fields: `resource` and `date`. Our desired output is a breakdown by `resource`, `year`, `month`, `day` and `count`. 
+В нашем примере мы будем генерировать отчёт по дневному количеству хитов для какого-либо ресурса (например, веб-страницы). Это *hello world* для MapReduce. Для наших задач мы воспользуемся коллекцией `hits` с двумя полями: `resource` и `date`. Желаемый результат — это отчёт в разрезе ресурса, года, месяца, дня и количества. 
 
-Given the following data in `hits`:
+Пусть в `hits` лежат следующие данные:
 
 	resource     date
 	index        Jan 20 2010 4:30
@@ -462,7 +472,7 @@ Given the following data in `hits`:
 	index        Jan 21 2010 9:30
 	index        Jan 22 2010 5:00
 
-We'd expect the following output:
+На выходе мы хотим следующий результат:
 
 	resource  year   month   day   count
 	index     2010   1       20    3
@@ -471,11 +481,11 @@ We'd expect the following output:
 	index     2010   1       21    2
 	index     2010   1       22    1
 
-(The nice thing about this type of approach to analytics is that by storing the output, reports are fast to generate and data growth is controlled (per resource that we track, we'll add at most 1 document per day.)
+(Прелесть данного подхода заключается в хранении результатов; отчёты генерируются быстро и рост данных контролируется — для одного ресурса в день будет добавляться максимум один документ.)
 
-For the time being, focus on understanding the concept. At the end of this chapter, sample data and code will be given for you to try on your own.
+Давайте теперь сосредоточимся на понимании концепции. В конце главы в качестве примера будут приведены данные и код.
 
-The first thing to do is look at the map function. The goal of map is to make it emit a value which can be reduced. It's possible for map to emit 0 or more times. In our case, it'll always emit once (which is common). Imagine map as looping through each document in hits. For each document we want to emit a key with resource, year, month and day, and a simple value of 1:
+Первым делом рассмотрим функцию отображения. Задача функции отображения — породить значения, которые в дальнейшем будут использоваться при свёртке. Порождать значения можно ноль или более раз. В нашем случае — как чаще всего бывает — это всегда будет делаться один раз. Представьте, что map в цикле перебирает каждый документ в коллекции `hits`. Для каждого документа мы должны породить *ключ*, состоящий из ресурса, года, месяца и дня, и примитивное *значение* — единицу:
 
 	function() {
 		var key = {
@@ -487,7 +497,7 @@ The first thing to do is look at the map function. The goal of map is to make it
 		emit(key, {count: 1}); 
 	}
 
-`this` refers to the current document being inspected. Hopefully what'll help make this clear for you is to see what the output of the mapping step is. Using our above data, the complete output would be:
+`this` ссылается на текущий рассматриваемый документ. Надеюсь, результирующие данные прояснят для вас картину происходящего. При использовании наших тестовых данных, в результате получим:
 
 	{resource: 'index', year: 2010, month: 0, day: 20} => [{count: 1}, {count: 1}, {count:1}]
 	{resource: 'about', year: 2010, month: 0, day: 20} => [{count: 1}]
@@ -495,9 +505,9 @@ The first thing to do is look at the map function. The goal of map is to make it
 	{resource: 'index', year: 2010, month: 0, day: 21} => [{count: 1}, {count: 1}]
 	{resource: 'index', year: 2010, month: 0, day: 22} => [{count: 1}]
 
-Understanding this intermediary step is the key to understanding MapReduce. The values from emit are grouped together, as arrays, by key. .NET and Java developers can think of it as being of type `IDictionary<object, IList<object>>` (.NET) or `HashMap<Object, ArrayList>` (Java).
+Понимание этого промежуточного этапа даёт ключ к пониманию MapReduce. Порождённые данные собираются в массивы по одинаковому ключу. .NET и Java разработчики могут рассматривать это как тип `IDictionary<object, IList<object>>` (.NET) или `HashMap<Object, ArrayList>` (Java).
 
-Let's change our map function in some contrived way:
+Давайте изменим нашу map-функцию несколько надуманным способом:
 
 	function() {
 		var key = {resource: this.resource, year: this.date.getFullYear(), month: this.date.getMonth(), day: this.date.getDate()};
@@ -508,13 +518,13 @@ Let's change our map function in some contrived way:
 		}
 	}
 
-The first intermediary output would change to:
+Первый промежуточный результат теперь изменится на:
 
 	{resource: 'index', year: 2010, month: 0, day: 20} => [{count: 5}, {count: 1}, {count:1}]
 
-Notice how each emit generates a new value which is grouped by our key.
+Обратите внимание, как каждый emit порождает новое значение, которое группируется по ключу.
 
-The reduce function takes each of these intermediary results and outputs a final result. Here's what ours looks like:
+Reduce-функция берёт каждое из этих промежуточных значений и выдаёт конечный результат. Вот так будет выглядеть наша функция:
 
 	function(key, values) {
 		var sum = 0;
@@ -524,7 +534,7 @@ The reduce function takes each of these intermediary results and outputs a final
 		return {count: sum};
 	};
 
-Which would output:
+На выходе получим:
 
 	{resource: 'index', year: 2010, month: 0, day: 20} => {count: 3}
 	{resource: 'about', year: 2010, month: 0, day: 20} => {count: 1}
@@ -532,27 +542,27 @@ Which would output:
 	{resource: 'index', year: 2010, month: 0, day: 21} => {count: 2}
 	{resource: 'index', year: 2010, month: 0, day: 22} => {count: 1}
 
-Technically, the output in MongoDB is:
+Технически в MongoDB результат выглядит так:
 
 	_id: {resource: 'home', year: 2010, month: 0, day: 20}, value: {count: 3}
 
-Hopefully you've noticed that this is the final result we were after.
+Это и есть наш конечный результат.
 
-If you've really been paying attention, you might be asking yourself *why didn't we simply use `sum = values.length`?* This would seem like an efficient approach when you are essentially summing an array of 1s. The fact is that reduce isn't always called with a full and perfect set of intermediate data. For example, instead of being called with:
+Если вы были внимательны, вы должны были спросить себя: *почему мы просто не написали `sum = values.length`*? Это было бы эффективным подходом, если бы мы суммировали массив единиц. На деле reduce не всегда вызывается с полным и совершенным набором промежуточных данных. Например вместо того, чтобы быть вызванным с:
 
 	{resource: 'home', year: 2010, month: 0, day: 20} => [{count: 1}, {count: 1}, {count:1}]
 
-Reduce could be called with:
+Reduce может быть вызван с:
 
 	{resource: 'home', year: 2010, month: 0, day: 20} => [{count: 1}, {count: 1}]
 	{resource: 'home', year: 2010, month: 0, day: 20} => [{count: 2}, {count: 1}]
 
-The final output is the same (3), the path taken is simply different. As such, reduce must always be idempotent. That is, calling reduce multiple times should generate the same result as calling it once. 
+Конечный результат тот же самый (3), однако он получается немного разными путями. Таким образом, reduce должен всегда быть идемпотентным. То есть, вызывая reduce несколько раз, мы должны получать такой же результат, что и вызывая его один раз. 
 
-We aren't going to cover it here but it's common to chain reduce methods when performing more complex analysis. 
+Мы не станем рассматривать этого здесь, однако распространена практика последовательных свёрток, когда требуется выполнить сложный анализ. 
 
-### Pure Practical ###
-With MongoDB we use the `mapReduce` command on a collection. `mapReduce` takes a map function, a reduce function and an output directive. In our shell we can create and pass a JavaScript function. From most libraries you supply a string of your functions (which is a bit ugly). First though, let's create our simple data set:
+### Чистая практика ###
+С MongoDB мы вызываем у коллекции команду `mapReduce`. `mapReduce` принимает функцию map, функцию reduce и директивы для результата. В консоли мы можем создавать и передавать JavaScript функции. Из большинства библиотек вы будете передавать строковое представление функции (которое может выглядеть немного ужасно). Сперва давайте создадим набор данных:
 
 	db.hits.insert({resource: 'index', date: new Date(2010, 0, 20, 4, 30)});
 	db.hits.insert({resource: 'index', date: new Date(2010, 0, 20, 5, 30)});
@@ -565,7 +575,7 @@ With MongoDB we use the `mapReduce` command on a collection. `mapReduce` takes a
 	db.hits.insert({resource: 'index', date: new Date(2010, 0, 21, 9, 30)});
 	db.hits.insert({resource: 'index', date: new Date(2010, 0, 22, 5, 0)});
 
-Now we can create our map and reduce functions (the MongoDB shell accepts multi-line statements, you'll see *...* after hitting enter to indicate more text is expected):
+Теперь можно создать map и reduce функции (консоль MongoDB позволяет вводить многострочные конструкции):
 
 	var map = function() {
 		var key = {resource: this.resource, year: this.date.getFullYear(), month: this.date.getMonth(), day: this.date.getDate()};
@@ -580,125 +590,125 @@ Now we can create our map and reduce functions (the MongoDB shell accepts multi-
 		return {count: sum};
 	};
 
-Which we can use the `mapReduce` command against our `hits` collection by doing:
+Мы выполним команду `mapReduce` над коллекцией `hits` следующим образом:
 
 	db.hits.mapReduce(map, reduce, {out: {inline:1}})
 
-If you run the above, you should see the desired output. Setting `out` to `inline` means that the output from `mapReduce` is immediately streamed back to us. This is currently limited for results that are 16 megabytes or less. We could instead specify `{out: 'hit_stats'}` and have the results stored in the `hit_stats` collections:
+Если вы выполните код, приведённый выше, вы увидите ожидаемый результат. Установив `out` в  `inline` мы указываем, что `mapReduce` должен непосредственно вернуть результат в консоль. В данный момент размер результата ограничен 16 мегабайтами. Вместо этого мы могли бы написать `{out: 'hit_stats'}`, и результат был бы сохранён в коллекцию `hit_stats`:
 
 	db.hits.mapReduce(map, reduce, {out: 'hit_stats'});
 	db.hit_stats.find();
 
-When you do this, any existing data in `hit_stats` is lost. If we did `{out: {merge: 'hit_stats'}}` existing keys would be replaced with the new values and new keys would be inserted as new documents. Finally, we can `out` using a `reduce` function to handle more advanced cases (such an doing an upsert). 
+В таком случае все существовавшие данные из коллекции `hit_stats` были бы вначале удалены. Если бы мы написали `{out: {merge: 'hit_stats'}}`, существующие значения по соответствующим ключам были бы заменены на новые, а другие были бы вставлены. И наконец, можно в `out`  использовать `reduce` функцию — для более сложных случаев. 
 
-The third parameter takes additional options, for example we could filter, sort and limit the documents that we want analyzed. We can also supply a `finalize` method to be applied to the results after the `reduce` step.
+Третий параметр принимает дополнительные значения — например, можно сортировать, фильтровать или ограничивать анализируемые данные. Мы также можем передать метод `finalize`, который применится к результату возвращённому этапом `reduce`.
 
-### In This Chapter ###
-This is the first chapter where we covered something truly different. If it made you uncomfortable, remember that you can always use MongoDB's other [aggregation capabilities](http://www.mongodb.org/display/DOCS/Aggregation) for simpler scenarios. Ultimately though, MapReduce is one of MongoDB's most compelling features. The key to really understanding how to write your map and reduce functions is to visualize and understand the way your intermediary data will look coming out of `map` and heading into `reduce`.
+### В этой главе ###
+Это первая глава, в которой мы осветили совершенно новую для вас тему. Если вы испытываете неудобства, всегда можно обратиться к другим [средствам агрегирования](http://ru.wiki.mongodb.org/display/DOCS/Aggregation) и более простым сценариям. Впрочем, MapReduce является одной из наиболее важных функций MongoDB. Чтобы научиться писать map и reduce функции, необходимо чётко представлять и понимать, как выглядят ваши данные и как они преобразовываются по пути через `map` и `reduce`.
 
 \clearpage
 
-## Chapter 7 - Performance and Tools ##
-In this last chapter, we look at a few performance topics as well as some of the tools available to MongoDB developers. We won't dive deeply into either topic, but we will examine the most import aspects of each.
+## Глава 7 — Производительность и инструментарий ##
+В этой главе мы коснёмся некоторых вопросов производительности, а также рассмотрим инструментарий, доступный разработчикам MongoDB. Мы не станем сильно погружаться в эти темы, но рассмотрим наиболее важные аспекты каждой.
 
-### Indexes ###
-At the very beginning we saw the special `system.indexes` collection which contains information on all the indexes in our database. Indexes in MongoDB work a lot like indexes in a relational database: they help improve query and sorting performance. Indexes are created via `ensureIndex`:
+### Индексы ###
+В самом начале мы видели коллекцию `system.indexes`, которая содержит информацию о всех индексах в нашей базе данных. Индексы в MongoDB работают схожим образом с индексами в реляционных базах данных: они ускоряют выборку и сортировку данных. Индексы создаются с помощью `ensureIndex`:
 
 	db.unicorns.ensureIndex({name: 1});
 
-And dropped via `dropIndex`:
+И уничтожаются с помощью `dropIndex`:
 
 	db.unicorns.dropIndex({name: 1});
 
-A unique index can be created by supplying a second parameter and setting `unique` to `true`:
+Уникальный индекс может быть создан, если во втором параметре установить `unique` в `true`:
 
 	db.unicorns.ensureIndex({name: 1}, {unique: true});
 
-Indexes can be created on embedded fields (again, using the dot-notation) and on array fields. We can also create compound indexes:
+Можно создавать индексы над вложенными полями (опять же, используя точечную нотацию), либо над массивами. Также можно создавать составные индексы:
 
 	db.unicorns.ensureIndex({name: 1, vampires: -1});
 
-The order of your index (1 for ascending, -1 for descending) doesn't matter for a single key index, but it can have an impact for compound indexes when you are sorting or using a range condition.
+Порядок вашего индекса (1 для восходящего и -1 для нисходящего) не играет роли в случае с простым индексом, однако он может быть существенен при сортировке или лимитировании с применением составных индексов.
 
-The [indexes page](http://www.mongodb.org/display/DOCS/Indexes) has additional information on indexes.
+На [странице описания индексов](http://ru.wiki.mongodb.org/display/DOCS/Indexes) можно найти дополнительную информацию.
 
 ### Explain ###
-To see whether or not your queries are using an index, you can use the `explain` method on a cursor:
+Чтобы увидеть, используются ли индексы в ваших запросах, вызывайте у курсора метод `explain`:
 
 	db.unicorns.find().explain()
 
-The output tells us that a `BasicCursor` was used (which means non-indexed), 12 objects were scanned, how long it took, what index, if any was used as well as a few other pieces of useful information.
+В результате мы видим информацию, что использовался `BasicCursor` (то есть не индексированный), сканирование происходило по 12 объектам, как много это времени заняло, применялся ли индекс, и если да, то какой, а также прочие полезные сведения.
 
-If we change our query to use an index, we'll see that a `BtreeCursor` was used, as well as the index used to fulfill the request:
+Если мы изменим запрос так, чтобы он использовал индекс, мы увидим, что использовался курсор `BtreeCursor`, а также увидим индекс, использованный при выборке:
 
 	db.unicorns.find({name: 'Pilot'}).explain()
 
-### Fire And Forget Writes ###
-We previously mentioned that, by default, writes in MongoDB are fire-and-forget. This can result in some nice performance gains at the risk of losing data during a crash. An interesting side effect of this type of write is that an error is not returned when an insert/update violates a unique constraint. In order to be notified about a failed write, one must call `db.getLastError()` after an insert. Many drivers abstract this detail away and provide a way to do a *safe* write - often via an extra parameter.
+### Запись без подтверждения ###
+Мы уже упоминали, что запись данных в MongoDB происходит без подтверждения. Это может привести к приросту производительности, равно как и к риску потери данных в результате случайной ошибки. Возникает также побочный эффект, выражающийся в том, что когда обновление или вставка нарушают условие уникальности индекса, ошибки не происходит. Чтобы узнать о возникновении ошибки, после последней записи нужно вызывать `db.getLastError()`. Многие драйверы берут эту работу на себя, предоставляя возможность *безопасной* записи — часто для этого имеется специальный параметр.
 
-Unfortunately, the shell automatically does safe inserts, so we can't easily see this behavior in action.
+К сожалению, консоль не умеет этого делать, и пронаблюдать это в консоли будет непросто.
 
-### Sharding ###
-MongoDB supports auto-sharding. Sharding is an approach to scalability which separates your data across multiple servers. A naive implementation might put all of the data for users with a name that starts with A-M on server 1 and the rest on server 2. Thankfully, MongoDB's sharding capabilities far exceed such a simple algorithm. Sharding is a topic well beyond the scope of this book, but you should know that it exists and that you should consider it should your needs grow beyond a single server.
+### Шардинг ###
+MongoDB поддерживает авто-шардинг. Шардинг — это подход к масштабируемости, когда отдельные части данных хранятся на разных серверах. Примитивный пример — хранить данные пользователей, чьё имя начинается на буквы A-M на одном сервере, а остальных — на другом. Возможности шардинга MongoDB значительно превосходят данный простой пример. Рассмотрение шардинга выходит за пределы данной книги, однако вы должны знать, что он существует, и вы должны воспользоваться им, когда ваши задачи выйдут за рамки одного сервера.
 
-### Replication ###
-MongoDB replication works similarly to how relational database replication works. Writes are sent to a single server, the master, which then synchronizes itself to one or more other servers, the slaves. You can control whether reads can happen on slaves or not, which can help distribute your load at the risk of reading slightly stale data. If the master goes down, a slave can be promoted to act as the new master. Again, MongoDB replication is outside the scope of this book.
+### Репликация ###
+Репликация в MongoDB работает сходным образом с репликацией в реляционных базах данных. Записи посылаются на один сервер — ведущий *(master)*, который потом синхронизирует своё состояние с другими серверами — ведомыми *(slave)*. Вы можете разрешить или запретить чтение с ведомых серверов, в зависимости от того, допускается ли в вашей системе чтение несогласованных данных. Если ведущий сервер падает, один из ведомых может взять на себя роль ведущего. Репликация MongoDB также выходит за пределы данной книги.
 
- While replication can improve performance (by distributing reads), its main purpose is to increase reliability. Combining replication with sharding is a common approach. For example, each shard could be made up of a master and a slave. (Technically you'll also need an arbiter to help break a tie should two slaves try to become masters. But an arbiter requires very few resources and can be used for multiple shards.)
+Хотя репликация увеличивает производительность чтения, делая его распределённым, основная её цель — увеличение надёжности. Типичным подходом является сочетание репликации и шардинга. Например, каждый шард может состоять из ведущего и ведомого серверов. (Технически, вам также понадобится арбитр, чтобы разрешить конфликт, когда два ведомых сервера пытаются объявить себя ведущими. Но арбитр потребляет очень мало ресурсов и может быть использован для нескольких шардов сразу.)
 
-### Stats ###
-You can obtain statistics on a database by typing `db.stats()`. Most of the information deals with the size of your database. You can also get statistics on a collection, say `unicorns`, by typing `db.unicorns.stats()`. Again, most of this information relates to the size of your collection.
+### Статистика###
+Статистику базы данных можно получить с помощью вызова `db.stats()`. В основном информация касается размера вашей базы данных. Также можно получить статистику коллекции, например `unicorns`, с помощью вызова `db.unicorns.stats()`. Большая часть получаемой информации, опять же, касается размеров коллекции.
 
-### Web Interface ###
-Included in the information displayed on MongoDB's startup was a link to a web-based administrative tool (you might still be able to see if if you scroll your command/terminal window up to the point where you started `mongod`). You can access this by pointing your browser to <http://localhost:28017/>. To get the most out of it, you'll want to add `rest=true` to your config and restart the `mongod` process. The web interface gives you a lot of insight into the current state of your server.
+### Веб-интерфейс ###
+Когда `mongod` запускается, в консоли появляется, среди прочих, строчка со ссылкой на административный веб-интерфейс. Вы можете получить к нему доступ, зайдя в браузере на <http://localhost:28017/>. Чтобы получить от него максимальную отдачу, можете добавить `rest=true` в конфигурационный файл и перезапустить процесс `mongod`. Веб-интерфейс даёт много интересной информации о текущем состоянии сервера.
 
-### Profiler ###
-You can enable the MongoDB profiler by executing:
+### Профайлер ###
+Профайлер MongoDB можно включить с помощью следующего вызова:
 
 	db.setProfilingLevel(2);
 
-With it enabled, we can run a command:
+Со включённым профайлером можно запустить команду:
 
 	db.unicorns.find({weight: {$gt: 600}});
 
-And then examine the profiler:
+И обратиться к профайлеру:
 
 	db.system.profile.find()
 
-The output tells us what was run and when, how many documents were scanned, and how much data was returned.
+В результате мы увидим, что и когда запускалось, как много документов сканировалось, как много данных было возвращено.
 
-You can disable the profiler by calling `setProfileLevel` again but changing the argument to `0`. Another option is to specify `1` which will only profile queries that take more than 100 milliseconds. Or, you can specify the minimum time, in milliseconds, with a second parameter:
+Можно выключить профайлер, повторно вызвав `setProfileLevel`, только передав `0` в качестве аргумента. Можно также передать `1`для профилирования запросов, выполняющихся дольше 100 миллисекунд. Также, можно вторым параметром передать время в миллисекундах:
 
-	//profile anything that takes more than 1 second
+	//профилировать всё, что занимает более 1 секунды
 	db.setProfilingLevel(1, 1000);
 
-### Backups and Restore ###
-Within the MongoDB `bin` folder is a `mongodump` executable. Simply executing `mongodump` will connect to localhost and backup all of your databases to a `dump` subfolder. You can type `mongodump --help` to see additional options. Common options are `--db DBNAME` to back up a specific database and `--collection COLLECTIONAME` to back up a specific collection. You can then use the `mongorestore` executable, located in the same `bin` folder, to restore a previously made backup. Again, the `--db` and `--collection` can be specified to restore a specific database and/or collection. 
+###Резервное копирование и восстановление ###
+В папке `bin` MongoDB есть утилита `mongodump`. После выполнения `mongodump` произойдёт подключение к `localhost` и резервное копирование всех баз данных в подпапку `dump`. Можно набрать `mongodump --help` и увидеть дополнительные опции. Распространённые опции: `--db DBNAME` для резервного копирования только указанной базы данных и `--collection COLLECTIONAME` для резервного копирования только указанной коллекции. После этого можно использовать `mongorestore`, расположенный в той же папке `bin`, чтобы восстановить базу данных из предварительно сделанной резервной копии. Здесь также можно указать `--db` и `--collection`, чтобы восстановить только указанные базу данных и коллекцию. 
 
-For example, to back up our `learn` collection to a `backup` folder, we'd execute (this is its own executable which you run in a command/terminal window, not within the mongo shell itself):
+Например, чтобы сделать резервную копию базы данных `learn` в папку `backup`, мы должны выполнить (разумеется не в консоли самой MongoDB, а просто в консоли операционной системы):
 
 	mongodump --db learn --out backup
 
-To restore only the `unicorns` collection, we could then do:
+Чтобы восстановить только коллекцию `unicorns` мы должны сделать следующее:
 
 	mongorestore --collection unicorns backup/learn/unicorns.bson
 
-It's worth pointing out that `mongoexport` and `mongoimport` are two other executables which can be used to export and import data from JSON or CSV. For example, we can get a JSON output by doing:
+Также, стоит упомянуть, что есть две утилиты `mongoexport` и `mongoimport`, предназначенные для экспорта и импорта данных в виде JSON и CSV. Например, можно получить результат в виде JSON следующим образом:
 
 	mongoexport --db learn -collection unicorns
 
-And a CSV output by doing:
+И CSV:
 
 	mongoexport --db learn -collection unicorns --csv -fields name,weight,vampires
 
-Note that `mongoexport` and `mongoimport` cannot always represent your data. Only `mongodump` and `mongorestore` should ever be used for actual backups.
+Имейте в виду, что `mongoexport` и `mongoimport` не могут полностью отражать ваши данные. Только `mongodump` и `mongorestore` должны использоваться для настоящего резервного копирования.
 
-### In This Chapter ###
-In this chapter we looked a various commands, tools and performance details of using MongoDB. We haven't touched on everything, but we've looked at the most common ones. Indexing in MongoDB is similar to indexing with relational databases, as are many of the tools. However, with MongoDB, many of these are to the point and simple to use.
+### В этой главе ###
+В этой главе мы рассмотрели различные команды, инструменты и нюансы производительности MongoDB. Мы коснулись не всех тем, однако рассмотрели наиболее распространённые. Индексирование в MongoDB похоже на индексирование в реляционных базах данных, то же касается большинства инструментария. Однако в MongoDB пользоваться всем намного проще.
 
 \clearpage
 
-## Conclusion ##
-You should have enough information to start using MongoDB in a real project. There's more to MongoDB than what we've covered, but your next priority should be putting together what we've learned, and getting familiar with the driver you'll be using. The [MongoDB website](http://www.mongodb.com/) has a lot of useful information. The official [MongoDB user group](http://groups.google.com/group/mongodb-user) is a great place to ask questions.
+## Заключение ##
+Теперь у вас достаточно информации для того, чтобы начать пользоваться MongoDB в реальных проектах. MongoDB имеет в себе еще множество аспектов, о которых не говорилось в книге, однако вашей ближайшей задачей будет воспользоваться полученными знаниями и начать изучать драйвер, который вы будете использовать. На [сайте MongoDB](http://www.mongodb.com/) есть много полезной информации. В официальной [группе MongoDB](http://groups.google.com/group/mongodb-user) можно получить ответы на множество вопросов.
 
-NoSQL was born not only out of necessity, but also out of an interest to try new approaches. It is an acknowledgement that our field is ever advancing and that if we don't try, and sometimes fail, we can never succeed. This, I think, is a good way to lead our professional lives.
+NoSQL создаётся не только из необходимости, но еще и из интереса к поиску новых подходов. Это значит, что мы находимся на передовом фронте, и успех может прийти только к тем, кто не опускает руки. Вот так, я думаю, и нужно жить в нашей с вами профессии.
